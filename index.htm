@@ -58,6 +58,235 @@
         .outline-item:hover { background: #eef2ff; }
         button, select, input, label, aside, header { touch-action: manipulation; }
 
+        #save-status { display: inline-flex; align-items: center; gap: 4px; }
+
+        #toast-container {
+            position: fixed; bottom: 24px; right: 24px;
+            z-index: 200; display: flex; flex-direction: column-reverse;
+            gap: 8px; pointer-events: none;
+        }
+        .toast {
+            background: #1e293b; color: white;
+            padding: 10px 16px; border-radius: 8px;
+            font-size: 13px; font-weight: 500;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            animation: toast-in 0.2s ease;
+            pointer-events: auto; max-width: 380px;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .toast.success { background: #059669; }
+        .toast.error { background: #dc2626; }
+        .toast.info { background: #4f46e5; }
+        .toast.warn { background: #d97706; }
+        @keyframes toast-in { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+        .toast.hiding { animation: toast-out 0.2s ease forwards; }
+        @keyframes toast-out { to { opacity: 0; transform: translateX(20px); } }
+
+        #search-nav { display: none; }
+        #search-nav.visible { display: flex; }
+
+        #story-title-display {
+            cursor: text;
+            padding: 2px 4px;
+            margin: -2px -4px;
+            border-radius: 4px;
+            transition: background 0.15s;
+            outline: none;
+        }
+        #story-title-display:hover {
+            background: #f1f5f9;
+        }
+        #story-title-display[contenteditable="true"] {
+            background: white;
+            box-shadow: 0 0 0 2px #6366f1;
+            cursor: text;
+        }
+        body.app-theme-dark #story-title-display:hover {
+            background: #334155;
+        }
+        body.app-theme-dark #story-title-display[contenteditable="true"] {
+            background: #0f172a;
+        }
+
+        /* ==================== NOVO: Node tooltip (hover preview) ==================== */
+        #node-tooltip {
+            position: fixed;
+            max-width: 380px;
+            max-height: 70vh;
+            overflow-y: auto;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.25), 0 10px 20px -5px rgba(0,0,0,0.15);
+            padding: 12px 14px;
+            z-index: 250;
+            pointer-events: none;
+            animation: tooltip-fade 0.15s ease;
+            font-size: 12px;
+            line-height: 1.45;
+        }
+        @keyframes tooltip-fade {
+            from { opacity: 0; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        #node-tooltip::-webkit-scrollbar { width: 4px; }
+        #node-tooltip .tt-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            margin-bottom: 8px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        #node-tooltip .tt-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 2px 8px;
+            border-radius: 999px;
+            font-size: 10px;
+            font-weight: 700;
+            color: white;
+        }
+        #node-tooltip .tt-title {
+            font-weight: 700;
+            font-size: 13px;
+            color: #0f172a;
+            margin-bottom: 8px;
+            word-break: break-word;
+        }
+        #node-tooltip .tt-pov {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 3px 9px;
+            border-radius: 999px;
+            background: #ede9fe;
+            color: #6d28d9;
+            font-size: 10.5px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        #node-tooltip .tt-row {
+            margin-bottom: 4px;
+            word-break: break-word;
+        }
+        #node-tooltip .tt-label {
+            color: #64748b;
+            font-weight: 600;
+            font-size: 10.5px;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+        #node-tooltip .tt-value {
+            color: #1e293b;
+        }
+        #node-tooltip .tt-content {
+            color: #475569;
+            font-style: italic;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px dashed #e2e8f0;
+            font-size: 11.5px;
+            line-height: 1.5;
+            white-space: pre-wrap;
+        }
+        #node-tooltip .tt-empty {
+            color: #94a3b8;
+            font-style: italic;
+            font-size: 11px;
+        }
+        #node-tooltip .tt-hint {
+            margin-top: 10px;
+            padding-top: 8px;
+            border-top: 1px solid #f1f5f9;
+            color: #94a3b8;
+            font-size: 10px;
+        }
+        /* Dark theme */
+        body.app-theme-dark #node-tooltip {
+            background: #1e293b;
+            border-color: #334155;
+        }
+        body.app-theme-dark #node-tooltip .tt-badges { border-bottom-color: #334155; }
+        body.app-theme-dark #node-tooltip .tt-title { color: #f1f5f9; }
+        body.app-theme-dark #node-tooltip .tt-pov { background: #4c1d95; color: #ddd6fe; }
+        body.app-theme-dark #node-tooltip .tt-label { color: #94a3b8; }
+        body.app-theme-dark #node-tooltip .tt-value { color: #e2e8f0; }
+        body.app-theme-dark #node-tooltip .tt-content {
+            color: #cbd5e1;
+            border-top-color: #334155;
+        }
+        body.app-theme-dark #node-tooltip .tt-empty { color: #64748b; }
+        body.app-theme-dark #node-tooltip .tt-hint { border-top-color: #334155; color: #64748b; }
+
+        body.app-theme-dark {
+            background: #0f172a;
+            color: #e2e8f0;
+        }
+        body.app-theme-dark header,
+        body.app-theme-dark aside,
+        body.app-theme-dark #inspector-sidebar,
+        body.app-theme-dark #sheet-tabs-bar,
+        body.app-theme-dark #tension-strip {
+            background: #1e293b !important;
+            border-color: #334155 !important;
+        }
+        body.app-theme-dark #story-modal > div,
+        body.app-theme-dark #beat-picker-modal > div,
+        body.app-theme-dark #rel-editor {
+            background: #1e293b !important;
+            border-color: #334155 !important;
+            color: #e2e8f0;
+        }
+        body.app-theme-dark .bg-slate-50,
+        body.app-theme-dark .bg-slate-100 {
+            background: #334155 !important;
+        }
+        body.app-theme-dark .bg-white {
+            background: #1e293b !important;
+        }
+        body.app-theme-dark .border-slate-200,
+        body.app-theme-dark .border-slate-300 {
+            border-color: #334155 !important;
+        }
+        body.app-theme-dark .text-slate-900,
+        body.app-theme-dark .text-slate-800,
+        body.app-theme-dark .text-slate-700,
+        body.app-theme-dark .text-slate-600 {
+            color: #e2e8f0 !important;
+        }
+        body.app-theme-dark .text-slate-500,
+        body.app-theme-dark .text-slate-400 {
+            color: #94a3b8 !important;
+        }
+        body.app-theme-dark input,
+        body.app-theme-dark textarea,
+        body.app-theme-dark select {
+            background: #334155 !important;
+            border-color: #475569 !important;
+            color: #e2e8f0 !important;
+        }
+        body.app-theme-dark .hover\:bg-slate-100:hover,
+        body.app-theme-dark .hover\:bg-slate-200:hover {
+            background: #475569 !important;
+        }
+        body.app-theme-dark .sheet-tab:not(.active) {
+            background: #334155; color: #cbd5e1;
+        }
+        body.app-theme-dark .sheet-tab.active {
+            background: #312e81; color: #c7d2fe;
+            border-top-color: #818cf8; border-bottom-color: #818cf8;
+        }
+        body.app-theme-dark .outline-item:hover { background: #334155; }
+        body.app-theme-dark #outline-panel { background: #1e293b; }
+        body.app-theme-dark #focus-pill,
+        body.app-theme-dark #beat-pill,
+        body.app-theme-dark #narrative-pill,
+        body.app-theme-dark #align-toolbar {
+            background: #1e293b; border-color: #475569; color: #e2e8f0;
+        }
+
         #sheet-tabs-bar { scrollbar-width: thin; }
         #sheet-tabs-bar::-webkit-scrollbar { height: 4px; }
         .sheet-tab {
@@ -199,6 +428,7 @@
             #inspector-sidebar { width: 100% !important; max-width: 100vw; }
             #outline-panel { width: 80vw !important; }
             #minimap { display: none; }
+            #node-tooltip { display: none !important; }
             .beat-lane-label { width: 180px; padding: 10px; }
             .beat-lane-label .bl-icon { font-size: 16px; }
             .beat-lane-label .bl-name { font-size: 10px; }
@@ -213,9 +443,17 @@
             <div class="bg-indigo-600 text-white p-2 rounded-xl shadow-md flex items-center justify-center w-10 h-10 shrink-0">
                 <i class="fa-solid fa-brain text-lg"></i>
             </div>
-            <div class="min-w-0">
-                <h1 class="font-bold text-base text-slate-900 tracking-tight truncate" id="story-title-display">Minha História - Enredo Principal</h1>
-                <p class="text-[11px] text-slate-500 truncate">Mapa Mental Interativo de Cenas e Roteiro</p>
+            <div class="min-w-0 flex items-center gap-2">
+                <div class="min-w-0">
+                    <h1 onclick="startEditStoryTitle()" title="Clique para renomear"
+                        class="font-bold text-base text-slate-900 tracking-tight truncate"
+                        id="story-title-display">Minha História - Enredo Principal</h1>
+                    <p class="text-[11px] text-slate-500 truncate">Mapa Mental Interativo de Cenas e Roteiro</p>
+                </div>
+                <span id="save-status" class="hidden items-center gap-1 text-[10px] font-medium shrink-0 whitespace-nowrap ml-2">
+                    <i id="save-status-icon" class="fa-solid fa-circle-check text-emerald-500"></i>
+                    <span id="save-status-text" class="text-slate-500">Salvo</span>
+                </span>
             </div>
         </div>
 
@@ -237,9 +475,14 @@
                 <option value="paper">Tema Papel</option>
             </select>
 
-            <div class="relative">
+            <div class="relative flex items-center">
                 <i class="fa-solid fa-magnifying-glass absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs pointer-events-none"></i>
-                <input type="text" id="search-input" oninput="handleSearch(this.value)" placeholder="Buscar..." class="bg-slate-100 border border-slate-300 text-slate-700 text-xs rounded-lg pl-7 pr-2 py-1.5 outline-none focus:ring-2 focus:ring-indigo-500 w-40">
+                <input type="text" id="search-input" oninput="handleSearch(this.value)" onkeydown="handleSearchKeydown(event)" placeholder="Buscar..." class="bg-slate-100 border border-slate-300 text-slate-700 text-xs rounded-lg pl-7 pr-20 py-1.5 outline-none focus:ring-2 focus:ring-indigo-500 w-48">
+                <div id="search-nav" class="absolute right-1.5 top-1/2 -translate-y-1/2 items-center gap-0.5">
+                    <span id="search-count" class="text-[10px] text-slate-500 px-1 font-medium">0/0</span>
+                    <button onclick="gotoSearchResult(-1)" class="w-5 h-5 rounded hover:bg-slate-200 flex items-center justify-center" title="Anterior (Shift+Enter)"><i class="fa-solid fa-chevron-up text-[8px]"></i></button>
+                    <button onclick="gotoSearchResult(1)" class="w-5 h-5 rounded hover:bg-slate-200 flex items-center justify-center" title="Próximo (Enter)"><i class="fa-solid fa-chevron-down text-[8px]"></i></button>
+                </div>
             </div>
 
             <button onclick="openStorySettings()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-2.5 py-1.5 rounded-lg text-xs font-medium transition" title="Configurações">
@@ -333,14 +576,14 @@
             <div class="w-8 h-px bg-slate-200 my-1"></div>
 
             <button id="btn-focus" onclick="toggleFocusMode()" class="w-10 h-10 rounded-xl text-slate-600 hover:bg-slate-100 flex items-center justify-center transition" title="Focar no Ramo (Shift+F)">
-    <i class="fa-solid fa-eye"></i>
-</button>
-<button id="btn-beat-sheet" onclick="onBeatSheetButtonClick()" class="w-10 h-10 rounded-xl text-slate-600 hover:bg-slate-100 flex items-center justify-center transition" title="Beat Sheet (B)">
-    <i class="fa-solid fa-layer-group"></i>
-</button>
-<button id="btn-beat-change" onclick="openBeatSheetPicker()" class="w-10 h-10 rounded-xl text-slate-600 hover:bg-slate-100 flex items-center justify-center transition" title="Trocar Estrutura Narrativa">
-    <i class="fa-solid fa-shuffle"></i>
-</button>
+                <i class="fa-solid fa-eye"></i>
+            </button>
+            <button id="btn-beat-sheet" onclick="onBeatSheetButtonClick()" class="w-10 h-10 rounded-xl text-slate-600 hover:bg-slate-100 flex items-center justify-center transition" title="Beat Sheet (B)">
+                <i class="fa-solid fa-layer-group"></i>
+            </button>
+            <button id="btn-beat-change" onclick="openBeatSheetPicker()" class="w-10 h-10 rounded-xl text-slate-600 hover:bg-slate-100 flex items-center justify-center transition" title="Trocar Estrutura Narrativa">
+                <i class="fa-solid fa-shuffle"></i>
+            </button>
             <button id="btn-tension" onclick="toggleTensionStrip()" class="w-10 h-10 rounded-xl text-slate-600 hover:bg-slate-100 flex items-center justify-center transition" title="Curva de Tensão (K)">
                 <i class="fa-solid fa-chart-line"></i>
             </button>
@@ -430,6 +673,38 @@
                             </button>
                         </div>
 
+                        <div id="align-toolbar" class="absolute top-20 left-1/2 -translate-x-1/2 bg-white border-2 border-indigo-300 rounded-xl shadow-2xl px-1.5 py-1 z-40 hidden items-center gap-0.5">
+                            <span class="text-[10px] font-bold text-indigo-700 uppercase tracking-wider px-2">Alinhar</span>
+                            <button onclick="alignSelectedNodes('left')" title="Alinhar à esquerda (Ctrl+Shift+←)" class="w-8 h-8 rounded-lg text-slate-600 hover:bg-indigo-50 hover:text-indigo-700 flex items-center justify-center transition">
+                                <i class="fa-solid fa-align-left text-xs"></i>
+                            </button>
+                            <button onclick="alignSelectedNodes('center-h')" title="Centralizar horizontalmente (Ctrl+Shift+C)" class="w-8 h-8 rounded-lg text-slate-600 hover:bg-indigo-50 hover:text-indigo-700 flex items-center justify-center transition">
+                                <i class="fa-solid fa-align-center text-xs"></i>
+                            </button>
+                            <button onclick="alignSelectedNodes('right')" title="Alinhar à direita (Ctrl+Shift+→)" class="w-8 h-8 rounded-lg text-slate-600 hover:bg-indigo-50 hover:text-indigo-700 flex items-center justify-center transition">
+                                <i class="fa-solid fa-align-right text-xs"></i>
+                            </button>
+                            <div class="w-px h-5 bg-slate-200 mx-0.5"></div>
+                            <button onclick="alignSelectedNodes('top')" title="Alinhar ao topo (Ctrl+Shift+↑)" class="w-8 h-8 rounded-lg text-slate-600 hover:bg-indigo-50 hover:text-indigo-700 flex items-center justify-center transition">
+                                <i class="fa-solid fa-arrow-up text-xs"></i>
+                            </button>
+                            <button onclick="alignSelectedNodes('center-v')" title="Centralizar verticalmente (Ctrl+Shift+M)" class="w-8 h-8 rounded-lg text-slate-600 hover:bg-indigo-50 hover:text-indigo-700 flex items-center justify-center transition">
+                                <i class="fa-solid fa-minus text-xs"></i>
+                            </button>
+                            <button onclick="alignSelectedNodes('bottom')" title="Alinhar à base (Ctrl+Shift+↓)" class="w-8 h-8 rounded-lg text-slate-600 hover:bg-indigo-50 hover:text-indigo-700 flex items-center justify-center transition">
+                                <i class="fa-solid fa-arrow-down text-xs"></i>
+                            </button>
+                            <div class="w-px h-5 bg-slate-200 mx-0.5"></div>
+                            <button onclick="alignSelectedNodes('distribute-h')" title="Distribuir horizontalmente (Ctrl+Shift+H)" class="w-8 h-8 rounded-lg text-slate-600 hover:bg-indigo-50 hover:text-indigo-700 flex items-center justify-center transition">
+                                <i class="fa-solid fa-arrows-left-right text-xs"></i>
+                            </button>
+                            <button onclick="alignSelectedNodes('distribute-v')" title="Distribuir verticalmente (Ctrl+Shift+V)" class="w-8 h-8 rounded-lg text-slate-600 hover:bg-indigo-50 hover:text-indigo-700 flex items-center justify-center transition">
+                                <i class="fa-solid fa-arrows-up-down text-xs"></i>
+                            </button>
+                            <div class="w-px h-5 bg-slate-200 mx-0.5"></div>
+                            <span class="text-[10px] text-slate-400 italic px-1.5"><span id="align-count">0</span> nós</span>
+                        </div>
+
                         <div id="minimap" class="absolute bottom-4 right-4 z-30 hidden-minimap" style="width: 220px; height: 160px;" onpointerdown="event.stopPropagation()">
                             <canvas id="minimap-canvas" width="220" height="160"></canvas>
                         </div>
@@ -498,16 +773,16 @@
                     </div>
                 </div>
 
-                <div class="absolute bottom-28 left-4 bg-white/90 backdrop-blur border border-slate-200 rounded-xl shadow-lg px-3 py-2 text-[11px] text-slate-600 z-30 pointer-events-none flex items-center space-x-3 flex-wrap max-w-[calc(100%-2rem)]">
+                <div class="absolute bottom-4 left-4 bg-white/90 backdrop-blur border border-slate-200 rounded-xl shadow-lg px-3 py-2 text-[11px] text-slate-600 z-20 pointer-events-none flex items-center space-x-3 flex-wrap max-w-[calc(100%-2rem)]">
                     <div><i class="fa-solid fa-circle-info text-indigo-500 mr-1"></i>Ferramenta: <span id="current-tool-label" class="font-bold text-slate-800">Seleção</span></div>
                     <div class="w-px h-3 bg-slate-300"></div>
-                    <div class="hidden md:block"><kbd class="px-1 bg-slate-100 rounded text-[10px] border border-slate-300">Alt+arrastar</kbd> duplicar · <kbd class="px-1 bg-slate-100 rounded text-[10px] border border-slate-300">B</kbd> beat sheet · <kbd class="px-1 bg-slate-100 rounded text-[10px] border border-slate-300">Shift+B</kbd> por beat · <kbd class="px-1 bg-slate-100 rounded text-[10px] border border-slate-300">K</kbd> tensão</div>
+                    <div class="hidden md:block"><kbd class="px-1 bg-slate-100 rounded text-[10px] border border-slate-300">P</kbd> preview · <kbd class="px-1 bg-slate-100 rounded text-[10px] border border-slate-300">Ctrl+Shift+setas</kbd> alinhar · <kbd class="px-1 bg-slate-100 rounded text-[10px] border border-slate-300">Ctrl+D</kbd> duplicar · <kbd class="px-1 bg-slate-100 rounded text-[10px] border border-slate-300">Alt+arrastar</kbd> duplicar</div>
                     <div class="md:hidden">Toque: 1 dedo mover · 2 dedos zoom · duplo-toque editar</div>
                 </div>
             </div>
 
             <aside id="inspector-sidebar" class="w-96 bg-white border-l border-slate-200 flex flex-col z-20 shadow-xl transform translate-x-full transition-transform duration-300 absolute right-0 top-0 bottom-0">
-                <div class="p-4 border-b border-slate-200 flex items-center justify-between bg-slate-50">
+                <div class="p-4 border-b border-slate-200 flex items-center justify-between bg-slate-50 shrink-0">
                     <h2 class="font-bold text-slate-800 flex items-center space-x-2">
                         <i class="fa-solid fa-pen-to-square text-indigo-600"></i>
                         <span>Editar Detalhes do Nó</span>
@@ -555,6 +830,40 @@
                             </div>
                         </div>
 
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-1">Tipo dos Nós</label>
+                            <select id="multi-type-select" onchange="applyMultiType(this.value)"
+                                    class="w-full bg-slate-50 border border-slate-300 rounded-lg px-2 py-1.5 text-xs outline-none focus:ring-2 focus:ring-indigo-500">
+                                <option value="">— Não alterar —</option>
+                                <option value="__clear">Sem tipo (limpar)</option>
+                                <option value="scene">🎬 Cena</option>
+                                <option value="character">🧙 Personagem</option>
+                                <option value="location">📍 Cenário</option>
+                                <option value="event">⚡ Evento</option>
+                                <option value="dialogue">💬 Diálogo</option>
+                                <option value="theme">🎭 Tema</option>
+                                <option value="note">📝 Nota</option>
+                            </select>
+                        </div>
+
+                        <!-- NOVO: POV em multi-seleção -->
+                        <div class="bg-violet-50 border border-violet-200 rounded-lg p-3">
+                            <label class="block text-xs font-semibold text-violet-700 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+                                <i class="fa-solid fa-eye"></i>
+                                <span>POV dos Nós</span>
+                            </label>
+                            <div class="flex gap-1.5">
+                                <input type="text" id="multi-pov-input" list="pov-suggestions" placeholder="Ex: Ikari, Narrador..."
+                                       onkeydown="if(event.key==='Enter'){event.preventDefault();applyMultiPovFromInput();}"
+                                       class="flex-1 bg-white border border-violet-300 rounded-lg px-2 py-1.5 text-xs outline-none focus:ring-2 focus:ring-violet-500">
+                                <button onclick="applyMultiPovFromInput()" class="bg-violet-600 hover:bg-violet-700 text-white px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition">Aplicar</button>
+                            </div>
+                            <button onclick="clearMultiPov()" class="w-full mt-1.5 bg-white hover:bg-slate-50 text-violet-700 border border-violet-200 px-3 py-1.5 rounded-lg text-xs font-semibold transition flex items-center justify-center gap-1.5">
+                                <i class="fa-solid fa-eraser"></i><span>Limpar POV dos selecionados</span>
+                            </button>
+                            <p class="text-[10px] text-violet-600 mt-1.5 italic">Enter no campo aplica. Sugestões vêm de POVs já usados.</p>
+                        </div>
+
                         <div id="multi-beat-container" class="hidden bg-indigo-50 border border-indigo-200 rounded-lg p-3">
                             <label class="block text-xs font-semibold text-indigo-700 uppercase tracking-wider mb-1 flex items-center gap-1.5">
                                 <i class="fa-solid fa-layer-group"></i>
@@ -565,20 +874,29 @@
                             </select>
                             <p class="text-[10px] text-indigo-500 mt-1 italic">Aplicado a todos os nós selecionados.</p>
                         </div>
-
-                        <div class="pt-2 border-t border-slate-100">
-                            <button onclick="deleteSelectedNodes()" class="w-full bg-rose-50 hover:bg-rose-100 text-rose-600 px-3 py-2 rounded-lg text-xs font-semibold transition flex items-center justify-center space-x-1.5">
-                                <i class="fa-solid fa-trash-can"></i>
-                                <span>Excluir todos os selecionados</span>
-                            </button>
-                        </div>
                     </div>
 
                     <div id="single-node-fields" class="space-y-4">
                         <div>
                             <label class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-1">Título do Nó</label>
                             <input type="text" id="edit-node-title" oninput="saveCurrentNodeChanges()" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-sm text-slate-800 focus:ring-2 focus:ring-indigo-500 outline-none">
-                            <p class="text-[10px] text-slate-400 mt-1">Dica: duplo-clique no card edita direto (igual F2). Alt+arrastar duplica.</p>
+                            <p class="text-[10px] text-slate-400 mt-1">Dica: duplo-clique no card edita direto (igual F2). Ctrl+D duplica.</p>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-1.5">Tipo de Nó</label>
+                            <div id="node-type-picker" class="grid grid-cols-4 gap-1"></div>
+                        </div>
+
+                        <div id="type-fields-container" class="hidden bg-slate-50 rounded-lg p-3 space-y-2 border-l-4" style="border-left-color: #e2e8f0;"></div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-1">Ponto de Vista (POV)</label>
+                            <input type="text" id="edit-node-pov" list="pov-suggestions" placeholder="Ex: Ikari, Narrador..."
+                                   oninput="onNodePovChange(this.value)"
+                                   class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-sm text-slate-800 focus:ring-2 focus:ring-indigo-500 outline-none">
+                            <datalist id="pov-suggestions"></datalist>
+                            <p class="text-[10px] text-slate-400 mt-1">Opcional. Quando preenchido, aparece como etiqueta no card e é sugerido em outros nós.</p>
                         </div>
 
                         <div id="beat-field-container" class="hidden bg-indigo-50 border border-indigo-200 rounded-lg p-3">
@@ -630,6 +948,10 @@
                                        class="flex-1 bg-slate-50 border border-slate-300 rounded-lg px-2 py-1.5 text-xs outline-none focus:ring-2 focus:ring-indigo-500">
                                 <button onclick="addIconFromUrl()" class="bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap">+ Add</button>
                             </div>
+                            <p class="text-[10px] text-amber-600 mt-1.5 leading-snug">
+                                <i class="fa-solid fa-triangle-exclamation mr-1"></i>
+                                Para exportar PNG, hospede em <b>imgur.com</b>, <b>cloudinary.com</b> ou similar (CORS habilitado).
+                            </p>
                             <div id="icon-preview-list" class="flex flex-wrap gap-2 mt-3"></div>
                         </div>
 
@@ -645,20 +967,28 @@
                             <p class="text-[11px] text-slate-400 mb-1.5">Detalhes profundos como estado emocional, diálogos ou ramificações.</p>
                             <textarea id="edit-node-content" rows="8" oninput="saveCurrentNodeChanges()" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-3 text-sm text-slate-800 focus:ring-2 focus:ring-indigo-500 outline-none font-sans leading-relaxed resize-y" placeholder="Escreva os detalhes desta parte da história..."></textarea>
                         </div>
+                    </div>
+                </div>
 
-                        <div class="pt-2 border-t border-slate-100 space-y-2">
-                            <button onclick="extractCurrentNodeToNewSheet()" class="w-full bg-amber-50 hover:bg-amber-100 text-amber-700 px-3 py-2 rounded-lg text-xs font-semibold transition flex items-center justify-center space-x-1.5 border border-amber-200">
-                                <i class="fa-solid fa-diagram-project"></i><span>Extrair ramo para nova aba</span>
+                <div class="p-3 border-t border-slate-200 bg-slate-50 shrink-0">
+                    <div id="single-node-actions" class="space-y-2">
+                        <button onclick="extractCurrentNodeToNewSheet()" class="w-full bg-amber-50 hover:bg-amber-100 text-amber-700 px-3 py-2 rounded-lg text-xs font-semibold transition flex items-center justify-center space-x-1.5 border border-amber-200">
+                            <i class="fa-solid fa-diagram-project"></i><span>Extrair ramo para nova aba</span>
+                        </button>
+                        <div class="flex items-center justify-between gap-2">
+                            <button onclick="addChildNodeFromInspector()" class="flex-1 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 px-3 py-2 rounded-lg text-xs font-semibold transition flex items-center justify-center space-x-1.5">
+                                <i class="fa-solid fa-code-branch"></i><span>Adicionar Filho</span>
                             </button>
-                            <div class="flex items-center justify-between">
-                                <button onclick="addChildNodeFromInspector()" class="bg-indigo-50 hover:bg-indigo-100 text-indigo-700 px-3 py-2 rounded-lg text-xs font-semibold transition flex items-center space-x-1.5">
-                                    <i class="fa-solid fa-code-branch"></i><span>Adicionar Filho</span>
-                                </button>
-                                <button onclick="deleteCurrentNode()" class="bg-rose-50 hover:bg-rose-100 text-rose-600 px-3 py-2 rounded-lg text-xs font-semibold transition flex items-center space-x-1.5">
-                                    <i class="fa-solid fa-trash-can"></i><span>Excluir</span>
-                                </button>
-                            </div>
+                            <button onclick="deleteCurrentNode()" class="flex-1 bg-rose-50 hover:bg-rose-100 text-rose-600 px-3 py-2 rounded-lg text-xs font-semibold transition flex items-center justify-center space-x-1.5">
+                                <i class="fa-solid fa-trash-can"></i><span>Excluir</span>
+                            </button>
                         </div>
+                    </div>
+                    <div id="multi-node-actions" class="hidden">
+                        <button onclick="deleteSelectedNodes()" class="w-full bg-rose-50 hover:bg-rose-100 text-rose-600 px-3 py-2 rounded-lg text-xs font-semibold transition flex items-center justify-center space-x-1.5">
+                            <i class="fa-solid fa-trash-can"></i>
+                            <span>Excluir todos os selecionados</span>
+                        </button>
                     </div>
                 </div>
             </aside>
@@ -676,6 +1006,21 @@
                     <label class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-1">Título da História</label>
                     <input type="text" id="modal-story-title" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-sm text-slate-800 focus:ring-2 focus:ring-indigo-500 outline-none">
                 </div>
+
+                <div class="bg-slate-50 border border-slate-200 rounded-lg p-3">
+                    <div class="flex justify-between mb-1.5">
+                        <span class="text-xs font-semibold text-slate-600 uppercase tracking-wider">Armazenamento local</span>
+                        <span id="storage-usage" class="text-xs font-bold text-slate-800">—</span>
+                    </div>
+                    <div class="w-full h-1.5 bg-slate-200 rounded-full overflow-hidden">
+                        <div id="storage-bar" class="h-full bg-indigo-500 transition-all" style="width: 0%"></div>
+                    </div>
+                    <p class="text-[10px] text-slate-400 mt-2 leading-snug">
+                        <i class="fa-solid fa-shield-halved mr-1"></i>
+                        Salvo no navegador (localStorage). Faça backup regular em <b>Exportar → JSON</b>.
+                    </p>
+                </div>
+
                 <div class="flex justify-between items-center pt-2">
                     <button onclick="deleteCurrentStory()" class="text-rose-600 hover:text-rose-700 text-xs font-semibold flex items-center space-x-1">
                         <i class="fa-solid fa-trash"></i><span>Excluir História</span>
@@ -725,6 +1070,9 @@
         <p class="font-semibold text-sm">Gerando imagem PNG de alta qualidade...</p>
     </div>
 
+    <div id="toast-container"></div>
+    <div id="node-tooltip" class="hidden"></div>
+
     <script>
         const CANVAS_CENTER_X = 2600;
         const CANVAS_CENTER_Y = 2600;
@@ -749,8 +1097,7 @@
 
         const BEAT_FRAMEWORKS = {
             save_the_cat: {
-                name: 'Save the Cat',
-                author: 'Blake Snyder',
+                name: 'Save the Cat', author: 'Blake Snyder',
                 tagline: 'Estrutura comercial de 15 beats usada nos blockbusters americanos. Ótima para histórias de ritmo acelerado.',
                 beats: [
                     { id: 'opening_image', name: 'Opening Image', icon: '🌅', desc: 'Antes da jornada — o mundo do protagonista como ele é.' },
@@ -771,8 +1118,7 @@
                 ]
             },
             heros_journey: {
-                name: 'Jornada do Herói',
-                author: 'Campbell / Vogler',
+                name: 'Jornada do Herói', author: 'Campbell / Vogler',
                 tagline: 'Monomito clássico de 12 estágios. Ideal para histórias de transformação e fantasia épica.',
                 beats: [
                     { id: 'ordinary_world', name: 'Mundo Comum', icon: '🏡', desc: 'Mundo normal antes da aventura.' },
@@ -790,8 +1136,7 @@
                 ]
             },
             story_circle: {
-                name: 'Círculo da História',
-                author: 'Dan Harmon',
+                name: 'Círculo da História', author: 'Dan Harmon',
                 tagline: 'Ciclo de 8 etapas que mapeia o movimento psicológico do personagem. Excelente para séries e episódios.',
                 beats: [
                     { id: 'you', name: '1. You', icon: '🧍', desc: 'Personagem em zona de conforto.' },
@@ -805,8 +1150,7 @@
                 ]
             },
             three_act: {
-                name: 'Três Atos',
-                author: 'Estrutura clássica',
+                name: 'Três Atos', author: 'Estrutura clássica',
                 tagline: 'Divisão simples e universal. Boa para começar sem se prender a estruturas complexas.',
                 beats: [
                     { id: 'act1_setup', name: 'Ato I — Apresentação', icon: '📖', desc: 'Mundo, personagens, incidente incitante.' },
@@ -814,6 +1158,72 @@
                     { id: 'act3_resolution', name: 'Ato III — Resolução', icon: '🎬', desc: 'Clímax e desfecho.' }
                 ]
             }
+        };
+
+        // ==============================================================
+        // TIPOS DE NÓ
+        // ==============================================================
+        const NODE_TYPES = {
+            scene:     { id: 'scene',     label: 'Cena',       icon: '🎬', color: '#3b82f6' },
+            character: { id: 'character', label: 'Personagem', icon: '🧙', color: '#a855f7' },
+            location:  { id: 'location',  label: 'Cenário',    icon: '📍', color: '#10b981' },
+            event:     { id: 'event',     label: 'Evento',     icon: '⚡', color: '#f59e0b' },
+            dialogue:  { id: 'dialogue',  label: 'Diálogo',    icon: '💬', color: '#0ea5e9' },
+            theme:     { id: 'theme',     label: 'Tema',       icon: '🎭', color: '#ec4899' },
+            note:      { id: 'note',      label: 'Nota',       icon: '📝', color: '#64748b' }
+        };
+
+        // ==============================================================
+        // CAMPOS ESPECÍFICOS POR TIPO
+        // ==============================================================
+        const TYPE_FIELDS = {
+            scene: [
+                { key: 'intExt',      label: 'INT / EXT',    type: 'select',   options: ['INT', 'EXT', 'INT/EXT'] },
+                { key: 'location',    label: 'Local',        type: 'text' },
+                { key: 'timeOfDay',   label: 'Tempo',        type: 'select',   options: ['DIA', 'NOITE', 'AMANHECER', 'ANOITECER', 'CONTÍNUO'] },
+                { key: 'characters',  label: 'Personagens (separe por vírgula)', type: 'text' },
+                { key: 'objective',   label: 'Objetivo da cena', type: 'text' },
+                { key: 'conflict',    label: 'Conflito / obstáculo', type: 'textarea' }
+            ],
+            character: [
+                { key: 'fullName',       label: 'Nome completo',  type: 'text' },
+                { key: 'age',            label: 'Idade',          type: 'text' },
+                { key: 'role',           label: 'Papel',          type: 'select', options: ['Protagonista', 'Antagonista', 'Co-protagonista', 'Secundário', 'Figurante'] },
+                { key: 'want',           label: 'Desejo externo (want)', type: 'text' },
+                { key: 'need',           label: 'Necessidade interna (need)', type: 'text' },
+                { key: 'arc',            label: 'Arco de transformação', type: 'textarea' },
+                { key: 'firstAppearance',label: 'Primeira aparição', type: 'text' },
+                { key: 'lastAppearance', label: 'Última aparição',   type: 'text' }
+            ],
+            location: [
+                { key: 'era',          label: 'Época / período',  type: 'text' },
+                { key: 'climate',      label: 'Clima',            type: 'text' },
+                { key: 'atmosphere',   label: 'Atmosfera',        type: 'text' },
+                { key: 'geography',    label: 'Geografia / descrição', type: 'textarea' },
+                { key: 'significance', label: 'Significado na história', type: 'textarea' }
+            ],
+            event: [
+                { key: 'eventType',    label: 'Tipo de evento',  type: 'select', options: ['Incidente Incitante', 'Catalisador', 'Primeiro Ponto de Virada', 'Midpoint', 'Segundo Ponto de Virada', 'Clímax', 'Desfecho', 'Outro'] },
+                { key: 'objective',    label: 'Objetivo',        type: 'text' },
+                { key: 'obstacle',     label: 'Obstáculo',       type: 'text' },
+                { key: 'outcome',      label: 'Resultado',       type: 'text' },
+                { key: 'stakes',       label: 'Apostas',         type: 'text' },
+                { key: 'consequences', label: 'Consequências',   type: 'textarea' }
+            ],
+            dialogue: [
+                { key: 'speaker',  label: 'Falante',             type: 'text' },
+                { key: 'target',   label: 'Para quem',           type: 'text' },
+                { key: 'emotion',  label: 'Emoção dominante',    type: 'text' },
+                { key: 'subtext',  label: 'Subtexto',            type: 'textarea' },
+                { key: 'context',  label: 'Contexto',            type: 'text' }
+            ],
+            theme: [
+                { key: 'statement',  label: 'Declaração do tema',  type: 'text' },
+                { key: 'motifs',     label: 'Motivos recorrentes (separe por vírgula)', type: 'text' },
+                { key: 'symbolism',  label: 'Simbolismo',          type: 'textarea' },
+                { key: 'examples',   label: 'Exemplos na história', type: 'textarea' }
+            ],
+            note: []
         };
 
         function getCurrentFramework() {
@@ -833,6 +1243,7 @@
         const NODE_GAP = 20;
         const DRAG_DEADZONE_PX = 5;
         const DBLCLICK_MS = 400;
+        const TOOLTIP_DELAY_MS = 650;
 
         const BEAT_LANE_HEIGHT = 220;
         const BEAT_LABEL_W = 260;
@@ -853,9 +1264,91 @@
             return '#ef4444';
         }
 
-        // ==============================================================
-        // DADOS NEUTROS — Apenas o nó principal
-        // ==============================================================
+        function deepClone(obj) {
+            if (typeof structuredClone === 'function') {
+                try { return structuredClone(obj); } catch(e) { /* fallback */ }
+            }
+            return JSON.parse(JSON.stringify(obj));
+        }
+
+        function showToast(message, type = 'info', duration = 3000) {
+            const container = document.getElementById('toast-container');
+            if (!container) return;
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            const icons = { success: 'fa-circle-check', error: 'fa-circle-exclamation', info: 'fa-circle-info', warn: 'fa-triangle-exclamation' };
+            toast.innerHTML = `<i class="fa-solid ${icons[type] || icons.info}"></i><span>${escapeHTML(message)}</span>`;
+            container.appendChild(toast);
+            setTimeout(() => {
+                toast.classList.add('hiding');
+                setTimeout(() => toast.remove(), 220);
+            }, duration);
+        }
+
+        function setSaveStatus(state) {
+            const el = document.getElementById('save-status');
+            const icon = document.getElementById('save-status-icon');
+            const text = document.getElementById('save-status-text');
+            if (!el || !icon || !text) return;
+
+            el.classList.remove('hidden');
+            el.classList.add('flex');
+
+            if (state === 'saving') {
+                icon.className = 'fa-solid fa-circle-notch fa-spin text-indigo-500';
+                text.textContent = 'Salvando...';
+                text.className = 'text-indigo-600';
+            } else if (state === 'saved') {
+                icon.className = 'fa-solid fa-circle-check text-emerald-500';
+                const time = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+                text.textContent = `Salvo às ${time}`;
+                text.className = 'text-slate-500';
+            } else if (state === 'error') {
+                icon.className = 'fa-solid fa-circle-exclamation text-rose-500';
+                text.textContent = 'Erro ao salvar';
+                text.className = 'text-rose-600';
+            }
+        }
+
+        function startEditStoryTitle() {
+            const el = document.getElementById('story-title-display');
+            if (!el || el.isContentEditable) return;
+            const originalTitle = currentStory ? currentStory.title : el.innerText;
+            el.contentEditable = 'true';
+            el.focus();
+            const range = document.createRange();
+            range.selectNodeContents(el);
+            const sel = window.getSelection();
+            sel.removeAllRanges();
+            sel.addRange(range);
+
+            let finished = false;
+            const finish = (save) => {
+                if (finished) return;
+                finished = true;
+                el.contentEditable = 'false';
+                el.onblur = null;
+                el.onkeydown = null;
+                if (save) {
+                    const newTitle = (el.innerText || '').trim() || originalTitle;
+                    if (currentStory && newTitle !== currentStory.title) {
+                        pushHistory();
+                        currentStory.title = newTitle;
+                        saveStoriesStorage();
+                        populateStorySelectDropdown();
+                        showToast("História renomeada.", "success", 1500);
+                    }
+                }
+                el.innerText = currentStory ? currentStory.title : originalTitle;
+            };
+
+            el.onblur = () => finish(true);
+            el.onkeydown = (e) => {
+                if (e.key === 'Enter') { e.preventDefault(); el.blur(); }
+                else if (e.key === 'Escape') { e.preventDefault(); finish(false); }
+            };
+        }
+
         const defaultStoryData = {
             title: "Minha História",
             sheets: [
@@ -881,7 +1374,10 @@
                             icons: [],
                             collapsed: false,
                             tension: 0,
-                            beatId: null
+                            beatId: null,
+                            type: null,
+                            pov: "",
+                            typeData: {}
                         }
                     ],
                     relationships: []
@@ -911,6 +1407,9 @@
         let editingNodeId = null;
         let editingField = null;
         let searchQuery = '';
+        let searchResults = [];
+        let searchResultIndex = -1;
+        let searchDebounceTimer = null;
         let relationshipSourceId = null;
         let selectedRelationshipId = null;
         let isDraggingControlPoint = false;
@@ -929,8 +1428,13 @@
         let isDraggingMinimap = false;
         let tensionStripVisible = true;
 
+        // NOVO: estado do tooltip de preview
+        let hoveredNodeId = null;
+        let tooltipTimer = null;
+        let previewHeld = false;
+
         // ==========================================================
-        // FUNÇÕES FALTANTES (relações, edição inline)
+        // RELAÇÕES E EDIÇÃO INLINE
         // ==========================================================
 
         function startInlineEdit(nodeId, field) {
@@ -980,7 +1484,7 @@
                      (r.from === nodeId && r.to === relationshipSourceId)
             );
             if (exists) {
-                alert("Essa relação já existe.");
+                showToast("Essa relação já existe.", "warn");
                 relationshipSourceId = null; renderApp(); return;
             }
             pushHistory();
@@ -1194,9 +1698,517 @@
         }
 
         // ==========================================================
-        // FIM DAS FUNÇÕES FALTANTES
+        // NOVO: TOOLTIP DE PREVIEW
         // ==========================================================
+        function buildTooltipHTML(node) {
+            if (!node) return '';
+            // Só mostra para nós "especiais" (tipo definido OU POV definido)
+            if (!node.type && !node.pov) return '';
+            // Não mostra enquanto o nó está sendo editado inline
+            if (editingNodeId === node.id) return '';
 
+            const typeDef = node.type ? NODE_TYPES[node.type] : null;
+            const beat = node.beatId ? findBeatById(node.beatId) : null;
+            const typeFields = (node.type && TYPE_FIELDS[node.type]) ? TYPE_FIELDS[node.type] : [];
+            const filledFields = typeFields.filter(f => {
+                const v = node.typeData ? node.typeData[f.key] : '';
+                return v && String(v).trim();
+            });
+
+            let html = '';
+
+            // Badges
+            const badges = [];
+            if (typeDef) {
+                badges.push(`<span class="tt-badge" style="background:${typeDef.color}">${typeDef.icon} ${escapeHTML(typeDef.label)}</span>`);
+            }
+            if (beat) {
+                badges.push(`<span class="tt-badge" style="background:#4f46e5">${beat.icon} ${escapeHTML(beat.name)}</span>`);
+            }
+            if (node.tension > 0) {
+                const tColor = tensionColor(node.tension) || '#64748b';
+                badges.push(`<span class="tt-badge" style="background:${tColor}">🔥 ${node.tension}/10</span>`);
+            }
+            if (badges.length > 0) {
+                html += `<div class="tt-badges">${badges.join('')}</div>`;
+            }
+
+            // Título
+            html += `<div class="tt-title">${escapeHTML(node.title || '')}</div>`;
+
+            // POV
+            if (node.pov && node.pov.trim()) {
+                html += `<div class="tt-pov"><i class="fa-solid fa-eye"></i> POV: ${escapeHTML(node.pov)}</div>`;
+            }
+
+            // Campos do tipo
+            if (filledFields.length > 0) {
+                filledFields.forEach(f => {
+                    const v = String(node.typeData[f.key]);
+                    html += `<div class="tt-row"><span class="tt-label">${escapeHTML(f.label)}:</span> <span class="tt-value">${escapeHTML(v)}</span></div>`;
+                });
+            } else if (typeDef && !node.pov) {
+                html += `<div class="tt-empty">Nenhum detalhe preenchido ainda.</div>`;
+            }
+
+            // Conteúdo (notas)
+            if (node.content && node.content.trim()) {
+                html += `<div class="tt-content">${escapeHTML(node.content)}</div>`;
+            }
+
+            // Dica
+            html += `<div class="tt-hint"><i class="fa-solid fa-hand-pointer mr-1"></i>Clique para editar · segure <b>P</b> para preview imediato</div>`;
+
+            return html;
+        }
+
+        function showNodeTooltipFromCard(nodeId) {
+            const node = mindMapData.nodes.find(n => n.id === nodeId);
+            if (!node) return;
+            const html = buildTooltipHTML(node);
+            if (!html) return;
+
+            const card = document.querySelector(`[data-node-id="${nodeId}"]`);
+            if (!card) return;
+            const cardRect = card.getBoundingClientRect();
+
+            const tt = document.getElementById('node-tooltip');
+            if (!tt) return;
+            tt.innerHTML = html;
+            tt.classList.remove('hidden');
+
+            // Força reflow para medir
+            void tt.offsetWidth;
+            const ttRect = tt.getBoundingClientRect();
+
+            // Preferência: à direita do card; se não couber, à esquerda
+            let left = cardRect.right + 12;
+            let top = cardRect.top;
+            if (left + ttRect.width > window.innerWidth - 12) {
+                left = cardRect.left - ttRect.width - 12;
+            }
+            if (left < 12) left = 12;
+            if (top + ttRect.height > window.innerHeight - 12) {
+                top = window.innerHeight - ttRect.height - 12;
+            }
+            if (top < 12) top = 12;
+            tt.style.left = left + 'px';
+            tt.style.top = top + 'px';
+        }
+
+        function cancelNodeTooltip() {
+            if (tooltipTimer) { clearTimeout(tooltipTimer); tooltipTimer = null; }
+        }
+
+        function hideNodeTooltip() {
+            cancelNodeTooltip();
+            const tt = document.getElementById('node-tooltip');
+            if (tt) tt.classList.add('hidden');
+        }
+
+        function scheduleTooltipForHovered() {
+            cancelNodeTooltip();
+            if (!hoveredNodeId) return;
+            if (draggedNodeId || isPanning || isMarqueeSelecting || isDraggingControlPoint) return;
+            if (previewHeld) {
+                showNodeTooltipFromCard(hoveredNodeId);
+            } else {
+                tooltipTimer = setTimeout(() => {
+                    tooltipTimer = null;
+                    if (hoveredNodeId && !draggedNodeId && !isPanning) {
+                        showNodeTooltipFromCard(hoveredNodeId);
+                    }
+                }, TOOLTIP_DELAY_MS);
+            }
+        }
+
+        function setupTooltipListeners() {
+            const canvas = document.getElementById('canvas-container');
+            if (!canvas) return;
+
+            canvas.addEventListener('mouseover', (e) => {
+                const card = e.target && e.target.closest ? e.target.closest('[data-node-id]') : null;
+                if (!card) return;
+                const nodeId = card.getAttribute('data-node-id');
+                if (nodeId === hoveredNodeId) return;
+                cancelNodeTooltip();
+                hideNodeTooltip();
+                hoveredNodeId = nodeId;
+                scheduleTooltipForHovered();
+            });
+
+            canvas.addEventListener('mouseout', (e) => {
+                const card = e.target && e.target.closest ? e.target.closest('[data-node-id]') : null;
+                if (!card) return;
+                const related = e.relatedTarget;
+                const relatedCard = related && related.closest ? related.closest('[data-node-id]') : null;
+                if (relatedCard === card) return;   // ainda no mesmo card
+                if (relatedCard) return;            // foi para outro card — mouseover lida
+                hoveredNodeId = null;
+                hideNodeTooltip();
+            });
+
+            // Esconde ao dar qualquer pointerdown (capture para pegar antes dos handlers do nó)
+            window.addEventListener('pointerdown', () => { hideNodeTooltip(); }, true);
+
+            // Esconde ao rolar/zoom
+            canvas.addEventListener('wheel', () => { hideNodeTooltip(); }, { passive: true });
+            canvas.addEventListener('scroll', () => { hideNodeTooltip(); }, { passive: true });
+
+            // Shift+P — segurar P mostra preview imediato
+            window.addEventListener('keydown', (e) => {
+                if (e.code === 'KeyP' && !e.ctrlKey && !e.metaKey && !e.shiftKey && !e.altKey) {
+                    const inInput = e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.isContentEditable;
+                    if (inInput) return;
+                    e.preventDefault();
+                    previewHeld = true;
+                    if (hoveredNodeId) showNodeTooltipFromCard(hoveredNodeId);
+                }
+            });
+            window.addEventListener('keyup', (e) => {
+                if (e.code === 'KeyP') {
+                    previewHeld = false;
+                    hideNodeTooltip();
+                    // Reagenda o tooltip com delay padrão se ainda houver hover
+                    if (hoveredNodeId) scheduleTooltipForHovered();
+                }
+            });
+
+            window.addEventListener('blur', () => {
+                previewHeld = false;
+                hideNodeTooltip();
+            });
+        }
+
+        // ==========================================================
+        // BUSCA COM NAVEGAÇÃO
+        // ==========================================================
+        function handleSearch(value) {
+            clearTimeout(searchDebounceTimer);
+            searchDebounceTimer = setTimeout(() => {
+                searchDebounceTimer = null;
+                searchQuery = (value || '').toLowerCase().trim();
+                updateSearchResults();
+                updateSearchNav();
+                renderApp();
+            }, 200);
+        }
+
+        function updateSearchResults() {
+            searchResults = [];
+            searchResultIndex = -1;
+            if (!searchQuery) return;
+            mindMapData.nodes.forEach(n => {
+                if ((n.title || '').toLowerCase().includes(searchQuery) ||
+                    (n.content || '').toLowerCase().includes(searchQuery) ||
+                    (n.pov || '').toLowerCase().includes(searchQuery)) {
+                    searchResults.push(n.id);
+                }
+            });
+            if (searchResults.length > 0) searchResultIndex = 0;
+        }
+
+        function updateSearchNav() {
+            const nav = document.getElementById('search-nav');
+            const count = document.getElementById('search-count');
+            if (!nav || !count) return;
+            if (searchQuery) {
+                nav.classList.add('visible');
+                count.textContent = searchResults.length > 0
+                    ? `${searchResultIndex + 1}/${searchResults.length}`
+                    : '0/0';
+            } else {
+                nav.classList.remove('visible');
+            }
+        }
+
+        function gotoSearchResult(dir) {
+            if (searchResults.length === 0) return;
+            searchResultIndex = (searchResultIndex + dir + searchResults.length) % searchResults.length;
+            const node = mindMapData.nodes.find(n => n.id === searchResults[searchResultIndex]);
+            if (node) {
+                selectedNodeIds.clear();
+                selectedNodeIds.add(node.id);
+                focusNodeInView(node);
+                updateSearchNav();
+                renderApp();
+            }
+        }
+
+        function handleSearchKeydown(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                gotoSearchResult(e.shiftKey ? -1 : 1);
+            } else if (e.key === 'Escape') {
+                e.preventDefault();
+                document.getElementById('search-input').value = '';
+                searchQuery = '';
+                searchResults = [];
+                searchResultIndex = -1;
+                updateSearchNav();
+                renderApp();
+                e.target.blur();
+            }
+        }
+
+        function updateStorageUsage() {
+            const el = document.getElementById('storage-usage');
+            const bar = document.getElementById('storage-bar');
+            if (!el || !bar) return;
+            try {
+                const size = new Blob([JSON.stringify(storiesDatabase)]).size;
+                const mb = size / 1024 / 1024;
+                el.textContent = `${mb.toFixed(2)} MB`;
+                const pct = Math.min((size / (5 * 1024 * 1024)) * 100, 100);
+                bar.style.width = pct + '%';
+                bar.className = pct > 80 ? 'h-full bg-rose-500 transition-all'
+                              : pct > 50 ? 'h-full bg-amber-500 transition-all'
+                              : 'h-full bg-indigo-500 transition-all';
+            } catch(e) {
+                el.textContent = '—';
+            }
+        }
+
+        // ==========================================================
+        // TIPOS DE NÓ E POV
+        // ==========================================================
+        function renderTypePicker() {
+            const container = document.getElementById('node-type-picker');
+            if (!container) return;
+            const id = document.getElementById('edit-node-id').value;
+            const node = mindMapData.nodes.find(n => n.id === id);
+            const activeType = node ? node.type : null;
+            container.innerHTML = '';
+
+            const opts = [
+                { id: '', icon: '✖', label: 'Sem', color: null },
+                ...Object.values(NODE_TYPES).map(t => ({ id: t.id, icon: t.icon, label: t.label, color: t.color }))
+            ];
+            opts.forEach(t => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                const isActive = (t.id === '' && !activeType) || (t.id === activeType);
+                btn.className = 'flex flex-col items-center justify-center gap-0.5 py-1.5 px-0.5 rounded-lg border text-[9px] font-semibold transition';
+                if (isActive) {
+                    if (t.color) {
+                        btn.style.borderColor = t.color;
+                        btn.style.background = t.color + '22';
+                        btn.style.color = t.color;
+                    } else {
+                        btn.style.borderColor = '#6366f1';
+                        btn.style.background = '#eef2ff';
+                        btn.style.color = '#4338ca';
+                    }
+                } else {
+                    btn.style.borderColor = '#e2e8f0';
+                    btn.style.color = '#64748b';
+                    btn.style.background = 'transparent';
+                }
+                btn.innerHTML = `<span style="font-size:15px;line-height:1">${t.icon}</span><span class="truncate w-full text-center leading-tight">${t.label}</span>`;
+                btn.onmouseenter = () => { if (!isActive) btn.style.background = '#f1f5f9'; };
+                btn.onmouseleave = () => { if (!isActive) btn.style.background = 'transparent'; };
+                btn.onclick = (e) => {
+                    e.preventDefault();
+                    onNodeTypeChange(t.id);
+                    renderTypePicker();
+                };
+                container.appendChild(btn);
+            });
+        }
+
+        function onNodeTypeChange(typeId) {
+            const id = document.getElementById('edit-node-id').value;
+            const node = mindMapData.nodes.find(n => n.id === id);
+            if (!node) return;
+            if (!typeId) node.type = null;
+            else if (NODE_TYPES[typeId]) node.type = typeId;
+            else return;
+            if (!node.typeData) node.typeData = {};
+            pushHistory();
+            saveStoriesStorage();
+            renderApp();
+            renderTypeFields();
+        }
+
+        function onNodePovChange(value) {
+            const id = document.getElementById('edit-node-id').value;
+            const node = mindMapData.nodes.find(n => n.id === id);
+            if (!node) return;
+            node.pov = value || '';
+            scheduleSave();
+            renderApp();
+            updatePovSuggestions();
+        }
+
+        function updatePovSuggestions() {
+            const dl = document.getElementById('pov-suggestions');
+            if (!dl) return;
+            const pvs = new Set();
+            mindMapData.nodes.forEach(n => {
+                if (n.pov && n.pov.trim()) pvs.add(n.pov.trim());
+            });
+            dl.innerHTML = '';
+            Array.from(pvs).sort().forEach(p => {
+                const opt = document.createElement('option');
+                opt.value = p;
+                dl.appendChild(opt);
+            });
+        }
+
+        function applyMultiType(typeId) {
+            if (selectedNodeIds.size === 0) return;
+            if (!typeId) return;
+            pushHistory();
+            selectedNodeIds.forEach(id => {
+                const n = mindMapData.nodes.find(x => x.id === id);
+                if (!n) return;
+                if (typeId === '__clear') n.type = null;
+                else if (NODE_TYPES[typeId]) {
+                    n.type = typeId;
+                    if (!n.typeData) n.typeData = {};
+                }
+            });
+            saveStoriesStorage();
+            renderApp();
+            openMultiInspector();
+        }
+
+        // ==========================================================
+        // NOVO: MULTI-POV
+        // ==========================================================
+        function applyMultiPovFromInput() {
+            const input = document.getElementById('multi-pov-input');
+            if (!input) return;
+            const value = (input.value || '').trim();
+            if (!value) {
+                showToast("Digite um POV primeiro.", "warn");
+                return;
+            }
+            if (selectedNodeIds.size === 0) return;
+            pushHistory();
+            selectedNodeIds.forEach(id => {
+                const n = mindMapData.nodes.find(x => x.id === id);
+                if (n) n.pov = value;
+            });
+            saveStoriesStorage();
+            renderApp();
+            updatePovSuggestions();
+            showToast(`POV "${value}" aplicado a ${selectedNodeIds.size} nó(s).`, "success", 2200);
+        }
+
+        function clearMultiPov() {
+            if (selectedNodeIds.size === 0) return;
+            pushHistory();
+            const count = selectedNodeIds.size;
+            selectedNodeIds.forEach(id => {
+                const n = mindMapData.nodes.find(x => x.id === id);
+                if (n) n.pov = '';
+            });
+            saveStoriesStorage();
+            renderApp();
+            updatePovSuggestions();
+            showToast(`POV removido de ${count} nó(s).`, "success", 2200);
+        }
+
+        // ==========================================================
+        // CAMPOS ESPECÍFICOS POR TIPO
+        // ==========================================================
+        function renderTypeFields() {
+            const container = document.getElementById('type-fields-container');
+            if (!container) return;
+            const id = document.getElementById('edit-node-id').value;
+            const node = mindMapData.nodes.find(n => n.id === id);
+            container.innerHTML = '';
+            if (!node || !node.type) {
+                container.classList.add('hidden');
+                return;
+            }
+            const fields = TYPE_FIELDS[node.type];
+            if (!fields || fields.length === 0) {
+                container.classList.add('hidden');
+                return;
+            }
+            const typeDef = NODE_TYPES[node.type];
+            container.classList.remove('hidden');
+            container.style.borderLeftColor = typeDef.color;
+            if (!node.typeData) node.typeData = {};
+
+            const header = document.createElement('div');
+            header.className = 'flex items-center gap-2 mb-2';
+            header.innerHTML = `
+                <span style="font-size:15px">${typeDef.icon}</span>
+                <span class="text-[10px] font-bold uppercase tracking-wider" style="color:${typeDef.color}">Detalhes: ${escapeHTML(typeDef.label)}</span>
+            `;
+            container.appendChild(header);
+
+            fields.forEach(f => {
+                const value = node.typeData[f.key] || '';
+                const wrapper = document.createElement('div');
+                let inputHTML = '';
+                if (f.type === 'select') {
+                    const options = f.options.map(opt =>
+                        `<option value="${escapeHTML(opt)}" ${value === opt ? 'selected' : ''}>${escapeHTML(opt)}</option>`
+                    ).join('');
+                    inputHTML = `<select onchange="onTypeFieldChange('${f.key}', this.value)" class="w-full bg-white border border-slate-300 rounded-lg px-2 py-1.5 text-xs outline-none focus:ring-2 focus:ring-indigo-500">
+                        <option value="">— Selecione —</option>
+                        ${options}
+                    </select>`;
+                } else if (f.type === 'textarea') {
+                    inputHTML = `<textarea rows="2" oninput="onTypeFieldChange('${f.key}', this.value)" class="w-full bg-white border border-slate-300 rounded-lg px-2 py-1.5 text-xs outline-none focus:ring-2 focus:ring-indigo-500 resize-y">${escapeHTML(value)}</textarea>`;
+                } else {
+                    inputHTML = `<input type="text" value="${escapeHTML(value)}" oninput="onTypeFieldChange('${f.key}', this.value)" class="w-full bg-white border border-slate-300 rounded-lg px-2 py-1.5 text-xs outline-none focus:ring-2 focus:ring-indigo-500">`;
+                }
+                wrapper.innerHTML = `<label class="block text-[10px] font-semibold text-slate-500 uppercase tracking-wider mb-1">${escapeHTML(f.label)}</label>${inputHTML}`;
+                container.appendChild(wrapper);
+            });
+        }
+
+        function onTypeFieldChange(key, value) {
+            const id = document.getElementById('edit-node-id').value;
+            const node = mindMapData.nodes.find(n => n.id === id);
+            if (!node) return;
+            if (!node.typeData) node.typeData = {};
+            node.typeData[key] = value;
+            scheduleSave();
+            renderApp();
+        }
+
+        function getCardTypeSummary(node) {
+            if (!node || !node.type || !node.typeData) return '';
+            const d = node.typeData;
+            const parts = [];
+            switch (node.type) {
+                case 'scene':
+                    if (d.intExt) parts.push(d.intExt);
+                    if (d.location) parts.push(d.location);
+                    if (d.timeOfDay) parts.push(d.timeOfDay);
+                    break;
+                case 'character':
+                    if (d.role) parts.push(d.role);
+                    if (d.age) parts.push(d.age + (String(d.age).match(/\d/) ? ' anos' : ''));
+                    break;
+                case 'location':
+                    if (d.era) parts.push(d.era);
+                    if (d.atmosphere) parts.push(d.atmosphere);
+                    break;
+                case 'event':
+                    if (d.eventType) parts.push(d.eventType);
+                    break;
+                case 'dialogue':
+                    if (d.speaker && d.target) parts.push(`${d.speaker} → ${d.target}`);
+                    else if (d.speaker) parts.push(d.speaker);
+                    else if (d.target) parts.push(`→ ${d.target}`);
+                    break;
+                case 'theme':
+                    if (d.statement) parts.push(d.statement);
+                    break;
+            }
+            return parts.join(' · ');
+        }
+
+        // ==========================================================
+        // BOOT
+        // ==========================================================
         window.onload = function() {
             loadStoriesStorage();
             switchStory('default');
@@ -1204,6 +2216,7 @@
             setupPointerListeners();
             setupMinimapInteractions();
             setupExportMenuListeners();
+            setupTooltipListeners();
 
             window.addEventListener('blur', () => {
                 activePointers.clear();
@@ -1216,6 +2229,7 @@
             window.addEventListener('resize', () => {
                 renderTensionCurve();
                 renderMinimap();
+                hideNodeTooltip();
             });
 
             window.addEventListener('beforeunload', () => {
@@ -1228,6 +2242,8 @@
                     try { saveStoriesStorage(); } catch(_) {}
                 }
             });
+
+            setTimeout(() => setSaveStatus('saved'), 150);
         };
 
         function setupExportMenuListeners() {
@@ -1339,7 +2355,7 @@
         }
 
         // ==================================================================
-        // BEAT SORT MODE — organização por sequência narrativa
+        // BEAT SORT
         // ==================================================================
         function isBeatSortAvailable() {
             return !!(mindMapData && mindMapData.beatSheetFramework);
@@ -1348,7 +2364,7 @@
         function toggleBeatSortMode() {
             if (!mindMapData) return;
             if (!isBeatSortAvailable()) {
-                alert("Escolha uma estrutura narrativa primeiro (botão Beat Sheet, ou tecla B).");
+                showToast("Escolha uma estrutura narrativa primeiro (botão Beat Sheet ou tecla B).", "warn");
                 return;
             }
             pushHistory();
@@ -1814,6 +2830,19 @@
             slider.value = Math.round(avg);
             updateMultiTensionDisplay(slider.value);
 
+            const typeSelect = document.getElementById('multi-type-select');
+            if (typeSelect) typeSelect.value = '';
+
+            // NOVO: prefill POV comum
+            const povs = Array.from(selectedNodeIds).map(id => {
+                const n = mindMapData.nodes.find(x => x.id === id);
+                return n ? (n.pov || '') : '';
+            });
+            const allSamePov = povs.length > 0 && povs.every(p => p === povs[0]);
+            const povInput = document.getElementById('multi-pov-input');
+            if (povInput) povInput.value = allSamePov ? povs[0] : '';
+            updatePovSuggestions();
+
             const beatContainer = document.getElementById('multi-beat-container');
             const fw = getCurrentFramework();
             if (fw) {
@@ -1838,6 +2867,8 @@
 
             document.getElementById('single-node-fields').classList.add('hidden');
             document.getElementById('multi-node-fields').classList.remove('hidden');
+            document.getElementById('single-node-actions').classList.add('hidden');
+            document.getElementById('multi-node-actions').classList.remove('hidden');
             document.getElementById('inspector-sidebar').classList.remove('translate-x-full');
         }
 
@@ -1917,7 +2948,7 @@
             orderedIds.forEach(id => {
                 const orig = mindMapData.nodes.find(n => n.id === id);
                 if (!orig) return;
-                const copy = JSON.parse(JSON.stringify(orig));
+                const copy = deepClone(orig);
                 copy.id = idMap[id];
                 if (copy.parentId && idMap[copy.parentId]) copy.parentId = idMap[copy.parentId];
                 newNodes.push(copy);
@@ -1926,7 +2957,7 @@
             const newRels = (mindMapData.relationships || [])
                 .filter(r => idMap[r.from] && idMap[r.to])
                 .map(r => ({
-                    ...JSON.parse(JSON.stringify(r)),
+                    ...deepClone(r),
                     id: 'rel-' + Date.now() + '-' + Math.random().toString(36).slice(2, 6),
                     from: idMap[r.from],
                     to: idMap[r.to]
@@ -2077,7 +3108,7 @@
 
         function toggleFocusMode() {
             if (focusModeNodeId) { exitFocusMode(); return; }
-            if (selectedNodeIds.size !== 1) { alert("Selecione um nó para focar."); return; }
+            if (selectedNodeIds.size !== 1) { showToast("Selecione um nó para focar.", "warn"); return; }
             const id = Array.from(selectedNodeIds)[0];
             const node = mindMapData.nodes.find(n => n.id === id);
             if (!node) return;
@@ -2165,7 +3196,10 @@
                 icons: n.icons || [],
                 collapsed: n.collapsed || false,
                 tension: typeof n.tension === 'number' ? n.tension : 0,
-                beatId: typeof n.beatId === 'string' ? n.beatId : null
+                beatId: typeof n.beatId === 'string' ? n.beatId : null,
+                type: (typeof n.type === 'string' && NODE_TYPES[n.type]) ? n.type : null,
+                pov: typeof n.pov === 'string' ? n.pov : '',
+                typeData: (n.typeData && typeof n.typeData === 'object' && !Array.isArray(n.typeData)) ? n.typeData : {}
             };
         }
 
@@ -2215,13 +3249,14 @@
                 beatSortMode: false,
                 beatSortSavedPositions: null,
                 nodes: options.nodes || [
-                    { id: generateNodeId(), title: "NOVO MAPA", content: "", parentId: null, x: CANVAS_CENTER_X, y: CANVAS_CENTER_Y, color: "purple", icons: [], collapsed: false, tension: 0, beatId: null }
+                    { id: generateNodeId(), title: "NOVO MAPA", content: "", parentId: null, x: CANVAS_CENTER_X, y: CANVAS_CENTER_Y, color: "purple", icons: [], collapsed: false, tension: 0, beatId: null, type: null, pov: "", typeData: {} }
                 ],
                 relationships: options.relationships || []
             };
         }
 
         function snapshot() { return JSON.stringify(mindMapData); }
+
         function pushHistory() {
             if (history.suspended) return;
             history.stack = history.stack.slice(0, history.index + 1);
@@ -2241,6 +3276,7 @@
             selectedNodeIds.clear();
             editingNodeId = null; editingField = null;
             relationshipSourceId = null; selectedRelationshipId = null;
+            hideNodeTooltip();
             closeInspector(); closeRelationshipEditor();
             syncBeatSheetUI();
             syncBeatSortUI();
@@ -2257,6 +3293,7 @@
             selectedNodeIds.clear();
             editingNodeId = null; editingField = null;
             relationshipSourceId = null; selectedRelationshipId = null;
+            hideNodeTooltip();
             closeInspector(); closeRelationshipEditor();
             syncBeatSheetUI();
             syncBeatSortUI();
@@ -2282,9 +3319,9 @@
             const saved = localStorage.getItem('storymind_database_v2');
             if (saved) {
                 try { storiesDatabase = JSON.parse(saved); }
-                catch(e) { storiesDatabase = { default: JSON.parse(JSON.stringify(defaultStoryData)) }; }
+                catch(e) { storiesDatabase = { default: deepClone(defaultStoryData) }; }
             } else {
-                storiesDatabase = { default: JSON.parse(JSON.stringify(defaultStoryData)) };
+                storiesDatabase = { default: deepClone(defaultStoryData) };
                 saveStoriesStorage();
             }
             populateStorySelectDropdown();
@@ -2298,13 +3335,16 @@
             storiesDatabase[currentStoryKey] = currentStory;
             try {
                 localStorage.setItem('storymind_database_v2', JSON.stringify(storiesDatabase));
+                setSaveStatus('saved');
             } catch(e) {
                 console.warn('Falha ao salvar no localStorage:', e);
+                setSaveStatus('error');
             }
         }
 
         function scheduleSave() {
             clearTimeout(saveTimer);
+            setSaveStatus('saving');
             saveTimer = setTimeout(() => { saveTimer = null; saveStoriesStorage(); }, 400);
         }
 
@@ -2324,6 +3364,8 @@
         }
 
         function switchStory(key) {
+            cancelAllInteractions();
+            hideNodeTooltip();
             if (key !== 'new' && !storiesDatabase[key]) {
                 const firstKey = Object.keys(storiesDatabase)[0];
                 if (!firstKey) return;
@@ -2334,7 +3376,7 @@
                 if (titleName) {
                     const newKey = 'story_' + Date.now() + '-' + Math.random().toString(36).slice(2, 6);
                     const newSheet = makeSheet('Enredo Principal', {
-                        nodes: [{ id: generateNodeId(), title: titleName.toUpperCase(), content: "Início da história.", parentId: null, x: CANVAS_CENTER_X, y: CANVAS_CENTER_Y, color: "purple", icons: [], collapsed: false, tension: 0, beatId: null }]
+                        nodes: [{ id: generateNodeId(), title: titleName.toUpperCase(), content: "Início da história.", parentId: null, x: CANVAS_CENTER_X, y: CANVAS_CENTER_Y, color: "purple", icons: [], collapsed: false, tension: 0, beatId: null, type: null, pov: "", typeData: {} }]
                     });
                     storiesDatabase[newKey] = { title: titleName, sheets: [newSheet], activeSheetId: newSheet.id };
                     currentStoryKey = newKey; currentStory = storiesDatabase[newKey]; mindMapData = newSheet;
@@ -2345,7 +3387,7 @@
                 }
             } else {
                 currentStoryKey = key;
-                currentStory = migrateStoryToSheets(JSON.parse(JSON.stringify(storiesDatabase[key])));
+                currentStory = migrateStoryToSheets(deepClone(storiesDatabase[key]));
                 const sheet = currentStory.sheets.find(s => s.id === currentStory.activeSheetId) || currentStory.sheets[0];
                 mindMapData = sheet; currentStory.activeSheetId = sheet.id;
             }
@@ -2356,6 +3398,9 @@
             closeInspector(); closeRelationshipEditor();
             document.getElementById('search-input').value = '';
             searchQuery = '';
+            searchResults = [];
+            searchResultIndex = -1;
+            updateSearchNav();
             applyTheme(mindMapData.theme || 'default');
             document.getElementById('layout-select').value = mindMapData.layout || 'tree';
             setTool('select');
@@ -2368,6 +3413,7 @@
         function openStorySettings() {
             if (!currentStory) return;
             document.getElementById('modal-story-title').value = currentStory.title;
+            updateStorageUsage();
             document.getElementById('story-modal').classList.remove('hidden');
             document.getElementById('story-modal').classList.add('flex');
         }
@@ -2387,7 +3433,7 @@
 
         function deleteCurrentStory() {
             if (Object.keys(storiesDatabase).length <= 1) {
-                alert("Não é possível excluir a única história."); return;
+                showToast("Não é possível excluir a única história.", "error"); return;
             }
             if (!confirm(`Excluir a história "${currentStory.title}"?`)) return;
             delete storiesDatabase[currentStoryKey];
@@ -2478,6 +3524,8 @@
         }
 
         function switchSheet(sheetId) {
+            cancelAllInteractions();
+            hideNodeTooltip();
             if (!currentStory) return;
             if (mindMapData && mindMapData.id === sheetId) return;
             const curIdx = currentStory.sheets.findIndex(s => s.id === mindMapData.id);
@@ -2492,7 +3540,10 @@
             focusModeNodeId = null; updateFocusPill();
             closeInspector(); closeRelationshipEditor();
             searchQuery = '';
+            searchResults = [];
+            searchResultIndex = -1;
             document.getElementById('search-input').value = '';
+            updateSearchNav();
             applyTheme(mindMapData.theme || 'default');
             document.getElementById('layout-select').value = mindMapData.layout || 'tree';
             syncBeatSheetUI();
@@ -2502,6 +3553,8 @@
         }
 
         function addSheet() {
+            cancelAllInteractions();
+            hideNodeTooltip();
             if (!currentStory) return;
             const curIdx = currentStory.sheets.findIndex(s => s.id === mindMapData.id);
             if (curIdx >= 0) currentStory.sheets[curIdx] = mindMapData;
@@ -2516,7 +3569,10 @@
             focusModeNodeId = null; updateFocusPill();
             closeInspector(); closeRelationshipEditor();
             searchQuery = '';
+            searchResults = [];
+            searchResultIndex = -1;
             document.getElementById('search-input').value = '';
+            updateSearchNav();
             applyTheme(mindMapData.theme || 'default');
             document.getElementById('layout-select').value = mindMapData.layout || 'tree';
             syncBeatSheetUI();
@@ -2555,8 +3611,10 @@
         }
 
         function deleteSheet(sheetId) {
+            cancelAllInteractions();
+            hideNodeTooltip();
             if (!currentStory) return;
-            if (currentStory.sheets.length <= 1) { alert("Não é possível excluir a única aba."); return; }
+            if (currentStory.sheets.length <= 1) { showToast("Não é possível excluir a única aba.", "error"); return; }
             const sheet = currentStory.sheets.find(s => s.id === sheetId);
             if (!sheet) return;
             if (!confirm(`Excluir a aba "${sheet.name}"?`)) return;
@@ -2579,12 +3637,16 @@
         }
 
         function duplicateSheet(sheetId) {
+            cancelAllInteractions();
+            hideNodeTooltip();
             if (!currentStory) return;
             const sheet = currentStory.sheets.find(s => s.id === sheetId);
             if (!sheet) return;
             const curIdx = currentStory.sheets.findIndex(s => s.id === mindMapData.id);
             if (curIdx >= 0) currentStory.sheets[curIdx] = mindMapData;
-            const clone = JSON.parse(JSON.stringify(sheet));
+            const clone = deepClone(sheet);
+            clone.nodes = (clone.nodes || []).map(migrateNode);
+            clone.relationships = (clone.relationships || []).map(r => migrateRelationship(r, clone));
             clone.id = generateSheetId();
             clone.name = sheet.name + ' (cópia)';
             const idMap = {};
@@ -2667,8 +3729,8 @@
         function copySelectedNodes() {
             if (selectedNodeIds.size === 0) return;
             const ids = new Set(selectedNodeIds);
-            const copiedNodes = mindMapData.nodes.filter(n => ids.has(n.id)).map(n => JSON.parse(JSON.stringify(n)));
-            const copiedRels = (mindMapData.relationships || []).filter(r => ids.has(r.from) && ids.has(r.to)).map(r => JSON.parse(JSON.stringify(r)));
+            const copiedNodes = mindMapData.nodes.filter(n => ids.has(n.id)).map(n => deepClone(n));
+            const copiedRels = (mindMapData.relationships || []).filter(r => ids.has(r.from) && ids.has(r.to)).map(r => deepClone(r));
             nodeClipboard = { nodes: copiedNodes, relationships: copiedRels, sourceSheetId: mindMapData.id };
         }
 
@@ -2724,13 +3786,15 @@
             selectedNodeIds.clear();
             newNodes.forEach(n => selectedNodeIds.add(n.id));
             if (mindMapData.beatSortMode) applyBeatSortLayout();
-            setTimeout(() => {
+            requestAnimationFrame(() => {
                 if (resolveOverlapsForDragged(new Set(newNodes.map(n => n.id)))) renderApp();
-            }, 0);
+            });
             saveStoriesStorage(); renderApp();
         }
 
         function extractCurrentNodeToNewSheet() {
+            cancelAllInteractions();
+            hideNodeTooltip();
             const id = document.getElementById('edit-node-id').value;
             const node = mindMapData.nodes.find(n => n.id === id);
             if (!node) return;
@@ -2746,8 +3810,8 @@
             const sheetName = prompt(`Mover ${sub.size} nó(s) para uma nova aba:`, defaultName);
             if (sheetName === null) return;
             pushHistory();
-            const subtreeNodes = mindMapData.nodes.filter(n => sub.has(n.id)).map(n => JSON.parse(JSON.stringify(n)));
-            const subtreeRels = (mindMapData.relationships || []).filter(r => sub.has(r.from) && sub.has(r.to)).map(r => JSON.parse(JSON.stringify(r)));
+            const subtreeNodes = mindMapData.nodes.filter(n => sub.has(n.id)).map(n => deepClone(n));
+            const subtreeRels = (mindMapData.relationships || []).filter(r => sub.has(r.from) && sub.has(r.to)).map(r => deepClone(r));
             const rootNode = subtreeNodes.find(n => n.id === node.id);
             rootNode.parentId = null;
             const dx = CANVAS_CENTER_X - rootNode.x;
@@ -2773,7 +3837,10 @@
             focusModeNodeId = null; updateFocusPill();
             closeInspector(); closeRelationshipEditor();
             searchQuery = '';
+            searchResults = [];
+            searchResultIndex = -1;
             document.getElementById('search-input').value = '';
+            updateSearchNav();
             applyTheme(mindMapData.theme || 'default');
             document.getElementById('layout-select').value = mindMapData.layout || 'tree';
             syncBeatSheetUI();
@@ -2820,7 +3887,10 @@
         }
 
         function renderApp() {
-            document.getElementById('story-title-display').innerText = currentStory ? currentStory.title : (mindMapData.title || '');
+            const titleEl = document.getElementById('story-title-display');
+            if (titleEl && !titleEl.isContentEditable) {
+                titleEl.innerText = currentStory ? currentStory.title : (mindMapData.title || '');
+            }
 
             const nodesLayer = document.getElementById('nodes-layer');
             const svgLayer = document.getElementById('connections-svg');
@@ -2876,13 +3946,17 @@
                 const isEditing = editingNodeId === node.id;
                 const isDropTarget = dropTargetId === node.id;
                 const isRelSource = relationshipSourceId === node.id;
-                const isSearchHit = searchQuery && ((node.title || '').toLowerCase().includes(searchQuery) || (node.content || '').toLowerCase().includes(searchQuery));
+                const isSearchHit = searchQuery && (
+                    (node.title || '').toLowerCase().includes(searchQuery) ||
+                    (node.content || '').toLowerCase().includes(searchQuery) ||
+                    (node.pov || '').toLowerCase().includes(searchQuery)
+                );
                 const isSearchMiss = searchQuery && !isSearchHit;
                 const isFocusDim = focusSet && !focusSet.has(node.id);
                 const tColor = tensionColor(node.tension || 0);
                 const beat = node.beatId ? findBeatById(node.beatId) : null;
-
                 const nodeColors = NODE_COLORS[node.color] || NODE_COLORS.white;
+                const typeDef = node.type ? NODE_TYPES[node.type] : null;
 
                 const el = document.createElement('div');
                 el.className = `node-card absolute pointer-events-auto p-4 rounded-xl shadow-md border cursor-pointer flex flex-col ${isSelected ? 'ring-4 ring-indigo-400 is-selected shadow-xl' : ''} ${isDropTarget ? 'drop-target' : ''} ${isRelSource ? 'rel-source' : ''} ${isSearchMiss ? 'opacity-30' : ''} ${isFocusDim ? 'focus-dim' : ''}`;
@@ -2891,7 +3965,13 @@
                 el.style.width = NODE_W + 'px';
                 el.style.background = nodeColors.bg;
                 el.style.color = nodeColors.text;
-                if (!isSelected) el.style.borderColor = nodeColors.border;
+                if (!isSelected) {
+                    el.style.borderTopColor = nodeColors.border;
+                    el.style.borderRightColor = nodeColors.border;
+                    el.style.borderBottomColor = nodeColors.border;
+                    el.style.borderLeftColor = typeDef ? typeDef.color : nodeColors.border;
+                }
+                if (typeDef) el.style.borderLeftWidth = '4px';
                 el.setAttribute('data-node-id', node.id);
 
                 const children = childCount(node.id);
@@ -2920,11 +4000,39 @@
                         </div>
                     `;
                 }
+                let typeBadgeHTML = '';
+                if (typeDef) {
+                    typeBadgeHTML = `
+                        <div class="absolute -top-2 -right-2 flex items-center gap-1 rounded-full shadow-md px-2 py-0.5 text-[9px] font-bold pointer-events-none z-10"
+                             style="background:${typeDef.color}; color:white;"
+                             title="${escapeHTML(typeDef.label)}">
+                            <span>${typeDef.icon}</span>
+                            <span class="hidden sm:inline max-w-[80px] truncate">${escapeHTML(typeDef.label)}</span>
+                        </div>
+                    `;
+                }
+                let povBadgeHTML = '';
+                if (node.pov && node.pov.trim()) {
+                    povBadgeHTML = `
+                        <div class="inline-flex items-center gap-1 bg-violet-100 border border-violet-300 text-violet-800 rounded-full px-2 py-0.5 text-[9px] font-semibold mb-1.5 pointer-events-none max-w-full self-start">
+                            <i class="fa-solid fa-eye text-[8px]"></i>
+                            <span class="truncate">${escapeHTML(node.pov)}</span>
+                        </div>
+                    `;
+                }
+
+                const cardTypeSummary = getCardTypeSummary(node);
+                const cardSummaryHTML = cardTypeSummary
+                    ? `<div class="text-[10px] font-semibold mb-1 truncate" style="color:${typeDef ? typeDef.color : '#475569'}" title="${escapeHTML(cardTypeSummary)}">${escapeHTML(cardTypeSummary)}</div>`
+                    : '';
 
                 el.innerHTML = `
                     ${tensionBarHTML}
                     ${beatBadgeHTML}
+                    ${typeBadgeHTML}
                     <div class="mb-1.5 min-w-0">${titleHTML}</div>
+                    ${cardSummaryHTML}
+                    ${povBadgeHTML}
                     ${iconsBlock}
                     ${contentHTML}
                     ${!isBeatSheet && !isBeatSort && children > 0 ? `<button onclick="event.stopPropagation(); toggleCollapse('${node.id}')" class="absolute -left-3.5 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full shadow-md flex items-center justify-center text-[10px] font-bold transition ${node.collapsed ? 'bg-slate-700 text-white' : 'bg-white border border-slate-300 text-slate-700'} hover:scale-110 z-20" title="${node.collapsed ? 'Expandir' : 'Recolher'} (${descendantCount(node.id)} descendentes)">${node.collapsed ? '+' + descendantCount(node.id) : '−'}</button>` : ''}
@@ -2984,6 +4092,7 @@
             updateBeatPill();
             renderMinimap();
             renderTensionCurve();
+            updateAlignToolbar();
         }
 
         function renderTensionCurve() {
@@ -3637,14 +4746,53 @@
             updateCanvasTransform();
         }
 
+        function findFreePosition(preferredX, preferredY, excludeId = null) {
+            const rects = [];
+            mindMapData.nodes.forEach(n => {
+                if (n.id === excludeId) return;
+                const h = getNodeHeight(n.id);
+                rects.push({ x: n.x, y: n.y, w: NODE_W, h });
+            });
+            const myH = NODE_H_FALLBACK;
+            const GAP = NODE_GAP;
+            const collides = (x, y) => rects.some(r =>
+                x < r.x + r.w + GAP && x + NODE_W + GAP > r.x &&
+                y < r.y + r.h + GAP && y + myH + GAP > r.y
+            );
+            if (!collides(preferredX, preferredY)) return { x: preferredX, y: preferredY };
+            const step = 30;
+            for (let ring = 1; ring <= 80; ring++) {
+                const d = ring * step;
+                const candidates = [
+                    { x: preferredX, y: preferredY + d },
+                    { x: preferredX, y: preferredY - d },
+                    { x: preferredX + d, y: preferredY },
+                    { x: preferredX - d, y: preferredY },
+                    { x: preferredX + d, y: preferredY + d },
+                    { x: preferredX - d, y: preferredY + d },
+                    { x: preferredX + d, y: preferredY - d },
+                    { x: preferredX - d, y: preferredY - d }
+                ];
+                for (const c of candidates) {
+                    if (c.x < 0 || c.y < 0) continue;
+                    if (!collides(c.x, c.y)) return c;
+                }
+            }
+            return { x: preferredX, y: preferredY };
+        }
+
         function addChildToNode(parentId) {
             const parentNode = mindMapData.nodes.find(n => n.id === parentId);
             if (!parentNode) return;
             const newId = generateNodeId();
+            const preferredX = parentNode.x + 320;
+            const preferredY = parentNode.y + (Math.random() * 140 - 70);
+            const pos = findFreePosition(preferredX, preferredY);
             mindMapData.nodes.push({
                 id: newId, title: "Novo tópico", content: "",
-                parentId: parentId, x: parentNode.x + 320, y: parentNode.y + (Math.random() * 140 - 70),
-                color: "white", icons: [], collapsed: false, tension: 0, beatId: null
+                parentId: parentId, x: pos.x, y: pos.y,
+                color: "white", icons: [], collapsed: false, tension: 0, beatId: null,
+                type: null, pov: "", typeData: {}
             });
             parentNode.collapsed = false;
             selectedNodeIds.clear(); selectedNodeIds.add(newId);
@@ -3655,7 +4803,8 @@
             const parent = mindMapData.nodes.find(n => n.id === parentId);
             if (!parent) return null;
             const newId = generateNodeId();
-            mindMapData.nodes.push({ id: newId, title: "Novo tópico", content: "", parentId, x: parent.x + 320, y: parent.y, color: "white", icons: [], collapsed: false, tension: 0, beatId: null });
+            const pos = findFreePosition(parent.x + 320, parent.y);
+            mindMapData.nodes.push({ id: newId, title: "Novo tópico", content: "", parentId, x: pos.x, y: pos.y, color: "white", icons: [], collapsed: false, tension: 0, beatId: null, type: null, pov: "", typeData: {} });
             parent.collapsed = false; saveStoriesStorage(); return newId;
         }
 
@@ -3664,7 +4813,8 @@
             if (!node) return null;
             if (!node.parentId) return createChild(nodeId);
             const newId = generateNodeId();
-            mindMapData.nodes.push({ id: newId, title: "Novo tópico", content: "", parentId: node.parentId, x: node.x, y: node.y + 130, color: node.color, icons: [], collapsed: false, tension: 0, beatId: null });
+            const pos = findFreePosition(node.x, node.y + 130);
+            mindMapData.nodes.push({ id: newId, title: "Novo tópico", content: "", parentId: node.parentId, x: pos.x, y: pos.y, color: node.color, icons: [], collapsed: false, tension: 0, beatId: null, type: null, pov: "", typeData: {} });
             saveStoriesStorage(); return newId;
         }
 
@@ -3672,11 +4822,14 @@
             const newId = generateNodeId();
             const parentTarget = selectedNodeIds.size === 1 ? Array.from(selectedNodeIds)[0] : (mindMapData.nodes.length > 0 ? mindMapData.nodes[0].id : null);
             const parentNode = mindMapData.nodes.find(n => n.id === parentTarget);
+            const preferredX = parentNode ? parentNode.x + 320 : CANVAS_CENTER_X;
+            const preferredY = parentNode ? parentNode.y + 120 : CANVAS_CENTER_Y;
+            const pos = findFreePosition(preferredX, preferredY);
             mindMapData.nodes.push({
                 id: newId, title: "Novo nó de enredo", content: "Escreva os detalhes...", parentId: parentTarget,
-                x: parentNode ? parentNode.x + 320 : CANVAS_CENTER_X,
-                y: parentNode ? parentNode.y + 120 : CANVAS_CENTER_Y,
-                color: "white", icons: [], collapsed: false, tension: 0, beatId: null
+                x: pos.x, y: pos.y,
+                color: "white", icons: [], collapsed: false, tension: 0, beatId: null,
+                type: null, pov: "", typeData: {}
             });
             if (parentNode) parentNode.collapsed = false;
             selectedNodeIds.clear(); selectedNodeIds.add(newId);
@@ -3691,10 +4844,15 @@
         function openInspectorFor(nodeId) {
             const node = mindMapData.nodes.find(n => n.id === nodeId);
             if (!node) return;
+            hideNodeTooltip();
             document.getElementById('edit-node-id').value = node.id;
             document.getElementById('edit-node-title').value = node.title;
             document.getElementById('edit-node-content').value = node.content || '';
             document.getElementById('icon-url-input').value = '';
+            document.getElementById('edit-node-pov').value = node.pov || '';
+            renderTypePicker();
+            renderTypeFields();
+            updatePovSuggestions();
 
             const t = typeof node.tension === 'number' ? node.tension : 0;
             document.getElementById('tension-slider').value = t;
@@ -3749,6 +4907,8 @@
 
             document.getElementById('multi-node-fields').classList.add('hidden');
             document.getElementById('single-node-fields').classList.remove('hidden');
+            document.getElementById('multi-node-actions').classList.add('hidden');
+            document.getElementById('single-node-actions').classList.remove('hidden');
             document.getElementById('inspector-sidebar').classList.remove('translate-x-full');
             renderApp();
         }
@@ -3784,7 +4944,7 @@
             const input = document.getElementById('icon-url-input');
             const url = input.value.trim();
             if (!url) return;
-            if (!/^https?:\/\//i.test(url) && !/^data:image\//i.test(url)) { alert("A URL precisa começar com http:// ou https://"); return; }
+            if (!/^https?:\/\//i.test(url) && !/^data:image\//i.test(url)) { showToast("A URL precisa começar com http:// ou https://", "error"); return; }
             pushHistory();
             node.icons = node.icons || [];
             node.icons.push(url);
@@ -3808,8 +4968,6 @@
 
         function deleteSelectedNodes() {
             if (selectedNodeIds.size === 0) return;
-            if (!confirm(`Excluir ${selectedNodeIds.size} nó(s)? Os descendentes também serão removidos.`)) return;
-            pushHistory();
             const toDelete = new Set(selectedNodeIds);
             let changed = true;
             while (changed) {
@@ -3818,6 +4976,14 @@
                     if (n.parentId && toDelete.has(n.parentId) && !toDelete.has(n.id)) { toDelete.add(n.id); changed = true; }
                 });
             }
+            const total = toDelete.size;
+            const selected = selectedNodeIds.size;
+            const descendants = total - selected;
+            let msg = `Excluir ${selected} nó(s)?`;
+            if (descendants > 0) msg = `Excluir ${selected} nó(s) + ${descendants} descendente(s)? Total: ${total} nó(s).`;
+            if (!confirm(msg)) return;
+
+            pushHistory();
             mindMapData.nodes = mindMapData.nodes.filter(n => !toDelete.has(n.id));
             mindMapData.relationships = (mindMapData.relationships || []).filter(r => !toDelete.has(r.from) && !toDelete.has(r.to));
             if (mindMapData.beatSheetSavedPositions) {
@@ -3829,6 +4995,7 @@
             if (focusModeNodeId && toDelete.has(focusModeNodeId)) { focusModeNodeId = null; updateFocusPill(); }
             selectedNodeIds.clear();
             editingNodeId = null; editingField = null;
+            hideNodeTooltip();
             closeInspector(); saveStoriesStorage(); renderApp();
         }
 
@@ -3959,7 +5126,70 @@
             });
         }
 
-        function handleSearch(value) { searchQuery = (value || '').toLowerCase().trim(); renderApp(); }
+        function alignSelectedNodes(direction) {
+            if (selectedNodeIds.size < 2) return;
+            const nodes = Array.from(selectedNodeIds)
+                .map(id => mindMapData.nodes.find(n => n.id === id))
+                .filter(Boolean);
+            if (nodes.length < 2) return;
+
+            const isDistribute = direction === 'distribute-h' || direction === 'distribute-v';
+            if (isDistribute && nodes.length < 3) return;
+
+            pushHistory();
+
+            const heights = {};
+            nodes.forEach(n => { heights[n.id] = getNodeHeight(n.id); });
+
+            const minX = Math.min(...nodes.map(n => n.x));
+            const maxX = Math.max(...nodes.map(n => n.x + NODE_W));
+            const minY = Math.min(...nodes.map(n => n.y));
+            const maxY = Math.max(...nodes.map(n => n.y + heights[n.id]));
+            const centerX = (minX + maxX) / 2;
+            const centerY = (minY + maxY) / 2;
+
+            switch (direction) {
+                case 'left':      nodes.forEach(n => { n.x = minX; }); break;
+                case 'center-h':  nodes.forEach(n => { n.x = Math.round(centerX - NODE_W / 2); }); break;
+                case 'right':     nodes.forEach(n => { n.x = maxX - NODE_W; }); break;
+                case 'top':       nodes.forEach(n => { n.y = minY; }); break;
+                case 'center-v':  nodes.forEach(n => { n.y = Math.round(centerY - heights[n.id] / 2); }); break;
+                case 'bottom':    nodes.forEach(n => { n.y = maxY - heights[n.id]; }); break;
+                case 'distribute-h': {
+                    const sorted = [...nodes].sort((a, b) => a.x - b.x);
+                    const first = sorted[0], last = sorted[sorted.length - 1];
+                    const step = (last.x - first.x) / (sorted.length - 1);
+                    sorted.forEach((n, i) => {
+                        if (i === 0 || i === sorted.length - 1) return;
+                        n.x = Math.round(first.x + step * i);
+                    });
+                    break;
+                }
+                case 'distribute-v': {
+                    const sorted = [...nodes].sort((a, b) => a.y - b.y);
+                    const first = sorted[0], last = sorted[sorted.length - 1];
+                    const step = (last.y - first.y) / (sorted.length - 1);
+                    sorted.forEach((n, i) => {
+                        if (i === 0 || i === sorted.length - 1) return;
+                        n.y = Math.round(first.y + step * i);
+                    });
+                    break;
+                }
+            }
+            saveStoriesStorage();
+            renderApp();
+        }
+
+        function updateAlignToolbar() {
+            const tb = document.getElementById('align-toolbar');
+            if (!tb) return;
+            const show = selectedNodeIds.size >= 2;
+            tb.classList.toggle('hidden', !show);
+            tb.classList.toggle('flex', show);
+            const count = document.getElementById('align-count');
+            if (count) count.textContent = selectedNodeIds.size;
+        }
+
         function highlightMatch(text, isHit) {
             const safe = escapeHTML(text || '');
             if (!searchQuery || !isHit) return safe;
@@ -4005,16 +5235,21 @@
             const collapsed = node.collapsed;
             const tColor = tensionColor(node.tension || 0);
             const beat = node.beatId ? findBeatById(node.beatId) : null;
+            const typeDef = node.type ? NODE_TYPES[node.type] : null;
             const dotHTML = tColor
                 ? `<span class="w-1.5 h-1.5 rounded-full shrink-0" style="background:${tColor}"></span>`
                 : `<span class="w-1.5 h-1.5 shrink-0"></span>`;
             const beatHTML = beat
                 ? `<span class="text-[10px] shrink-0" title="${escapeHTML(beat.name)}">${beat.icon}</span>`
                 : '';
+            const typeHTML = typeDef
+                ? `<span class="text-[10px] shrink-0" title="${escapeHTML(typeDef.label)}">${typeDef.icon}</span>`
+                : '';
             row.innerHTML = `
                 <span class="w-4 text-slate-400 text-[10px] flex items-center justify-center">${hasChildren ? (collapsed ? '▶' : '▼') : ''}</span>
                 ${dotHTML}
                 ${beatHTML}
+                ${typeHTML}
                 <span class="truncate flex-1 text-xs ${depth === 0 ? 'font-bold text-slate-800' : 'text-slate-700'}">${escapeHTML(node.title)}</span>
             `;
             row.onclick = (e) => {
@@ -4049,6 +5284,7 @@
             container.classList.remove('theme-dark', 'theme-paper');
             if (theme === 'dark') container.classList.add('theme-dark');
             if (theme === 'paper') container.classList.add('theme-paper');
+            document.body.classList.toggle('app-theme-dark', theme === 'dark');
             document.getElementById('theme-select').value = theme;
             renderMinimap();
         }
@@ -4079,7 +5315,7 @@
 
         function exportSVG() {
             const visible = getVisibleNodes();
-            if (visible.size === 0) { alert("Nada para exportar."); return; }
+            if (visible.size === 0) { showToast("Nada para exportar.", "warn"); return; }
             const nodeInfo = {};
             let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
             mindMapData.nodes.forEach(n => {
@@ -4205,7 +5441,11 @@
                 const x = info.x + offsetX, y = info.y + offsetY;
                 const w = info.w, h = info.h;
                 const tColor = tensionColor(node.tension || 0);
+                const typeDef = node.type ? NODE_TYPES[node.type] : null;
                 svg += `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="12" ry="12" fill="${colors.bg}" stroke="${colors.border}" stroke-width="1.5"/>\n`;
+                if (typeDef) {
+                    svg += `<rect x="${x}" y="${y}" width="4" height="${h}" rx="2" ry="2" fill="${typeDef.color}"/>\n`;
+                }
                 if (tColor) {
                     svg += `<path d="M ${x + 1.5} ${y + 1.5} L ${x + w - 1.5} ${y + 1.5} L ${x + w - 1.5} ${y + 4.5} L ${x + 1.5} ${y + 4.5} Z" fill="${tColor}"/>\n`;
                 }
@@ -4230,6 +5470,17 @@
                     svg += `<text x="${x + 16}" y="${textY}" fill="${colors.text}" font-family="Inter, sans-serif" font-size="12" font-weight="700">${esc(line)}</text>\n`;
                     textY += 15;
                 });
+                const svgSummary = getCardTypeSummary(node);
+                if (svgSummary) {
+                    const typeDefSvg = node.type ? NODE_TYPES[node.type] : null;
+                    const sumColor = typeDefSvg ? typeDefSvg.color : '#475569';
+                    svg += `<text x="${x + 16}" y="${textY}" fill="${sumColor}" font-family="Inter, sans-serif" font-size="10" font-weight="600">${esc(svgSummary)}</text>\n`;
+                    textY += 13;
+                }
+                if (node.pov && node.pov.trim()) {
+                    svg += `<text x="${x + 16}" y="${textY}" fill="#7c3aed" font-family="Inter, sans-serif" font-size="9" font-weight="600">👁 POV: ${esc(node.pov)}</text>\n`;
+                    textY += 14;
+                }
                 const contentLines = svgWrapText(node.content || '', w - 32, 11, 3);
                 textY += 4;
                 contentLines.forEach(line => {
@@ -4259,7 +5510,7 @@
             let nodesToExport, filename;
             if (mode === 'selected') {
                 if (selectedNodeIds.size === 0) {
-                    alert("Nenhum nó selecionado para exportar.");
+                    showToast("Nenhum nó selecionado para exportar.", "warn");
                     loadingEl.classList.add('hidden'); loadingEl.classList.remove('flex');
                     return;
                 }
@@ -4270,9 +5521,11 @@
                 filename = `${(currentStory ? currentStory.title : 'mapa').toLowerCase().replace(/\s+/g, '_')}_${(mindMapData.name || '').toLowerCase().replace(/\s+/g, '_')}_mapa_mental.png`;
             }
 
+            const nodeMap = new Map(mindMapData.nodes.map(n => [n.id, n]));
+
             let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
             nodesToExport.forEach(id => {
-                const node = mindMapData.nodes.find(n => n.id === id);
+                const node = nodeMap.get(id);
                 if (!node) return;
                 minX = Math.min(minX, node.x); minY = Math.min(minY, node.y);
             });
@@ -4287,7 +5540,7 @@
                 });
             });
             if (!isFinite(minX)) {
-                alert("Nada para exportar.");
+                showToast("Nada para exportar.", "warn");
                 loadingEl.classList.add('hidden'); loadingEl.classList.remove('flex');
                 return;
             }
@@ -4302,7 +5555,7 @@
 
             const cloneInfo = [];
             nodesToExport.forEach(id => {
-                const node = mindMapData.nodes.find(n => n.id === id);
+                const node = nodeMap.get(id);
                 if (!node) return;
                 const nodeEl = document.querySelector(`[data-node-id="${id}"]`);
                 if (!nodeEl) return;
@@ -4323,6 +5576,8 @@
             });
 
             document.body.appendChild(tempContainer);
+
+            const cloneMap = new Map(cloneInfo.map(c => [c.id, c]));
 
             let realMaxX = -Infinity, realMaxY = -Infinity;
             cloneInfo.forEach(ci => {
@@ -4385,8 +5640,8 @@
                     const conns = buildNarrativeConnections();
                     conns.forEach(c => {
                         if (!nodesToExport.has(c.from) || !nodesToExport.has(c.to)) return;
-                        const pInfo = cloneInfo.find(x => x.id === c.from);
-                        const cInfo = cloneInfo.find(x => x.id === c.to);
+                        const pInfo = cloneMap.get(c.from);
+                        const cInfo = cloneMap.get(c.to);
                         if (!pInfo || !cInfo) return;
                         const x1 = pInfo.x + pInfo.w/2 + offsetX, y1 = pInfo.y + pInfo.h/2 + offsetY;
                         const x2 = cInfo.x + cInfo.w/2 + offsetX, y2 = cInfo.y + cInfo.h/2 + offsetY;
@@ -4412,10 +5667,8 @@
                     mindMapData.nodes.forEach(node => {
                         if (!nodesToExport.has(node.id)) return;
                         if (!node.parentId || !nodesToExport.has(node.parentId)) return;
-                        const parent = mindMapData.nodes.find(n => n.id === node.parentId);
-                        if (!parent) return;
-                        const pInfo = cloneInfo.find(c => c.id === parent.id);
-                        const cInfo = cloneInfo.find(c => c.id === node.id);
+                        const pInfo = cloneMap.get(node.parentId);
+                        const cInfo = cloneMap.get(node.id);
                         if (!pInfo || !cInfo) return;
                         let pX, pY, cX, cY, d;
                         if (layout === 'radial') {
@@ -4444,8 +5697,8 @@
 
             (mindMapData.relationships || []).forEach(rel => {
                 if (!nodesToExport.has(rel.from) || !nodesToExport.has(rel.to)) return;
-                const pInfo = cloneInfo.find(c => c.id === rel.from);
-                const cInfo = cloneInfo.find(c => c.id === rel.to);
+                const pInfo = cloneMap.get(rel.from);
+                const cInfo = cloneMap.get(rel.to);
                 if (!pInfo || !cInfo) return;
                 const pFromRect = { x: pInfo.x, y: pInfo.y, w: pInfo.w, h: pInfo.h };
                 const pToRect = { x: cInfo.x, y: cInfo.y, w: cInfo.w, h: cInfo.h };
@@ -4511,13 +5764,14 @@
                     tempContainer.remove();
                     loadingEl.classList.add('hidden'); loadingEl.classList.remove('flex');
                     console.error("Erro ao exportar PNG:", err);
-                    alert("Erro ao gerar PNG.");
+                    showToast("Erro ao gerar PNG. Verifique se imagens têm CORS habilitado.", "error", 5000);
                 });
             }, 250);
         }
 
         function exportMarkdown() {
-            const titlePrefix = currentStory ? `# ${currentStory.title}\n\n## ${mindMapData.name}\n\n` : `# ${mindMapData.title || ''}\n\n`;
+            const sheetName = mindMapData.name || 'Sem nome';
+            const titlePrefix = currentStory ? `# ${currentStory.title}\n\n## ${sheetName}\n\n` : `# ${mindMapData.title || ''}\n\n`;
             const byParent = {};
             mindMapData.nodes.forEach(n => { (byParent[n.parentId] ||= []).push(n); });
             let md = titlePrefix;
@@ -4527,8 +5781,20 @@
                     const tStr = (typeof n.tension === 'number' && n.tension > 0) ? ` _(tensão: ${n.tension}/10)_` : '';
                     const beat = n.beatId ? findBeatById(n.beatId) : null;
                     const bStr = beat ? `${beat.icon} ` : '';
-                    md += '  '.repeat(depth) + `- ${bStr}${iconList}**${n.title}**${tStr}\n`;
+                    const typeDef = n.type ? NODE_TYPES[n.type] : null;
+                    const typeStr = typeDef ? `${typeDef.icon} ` : '';
+                    const povStr = (n.pov && n.pov.trim()) ? ` _(POV: ${n.pov})_` : '';
+                    md += '  '.repeat(depth) + `- ${bStr}${typeStr}${iconList}**${n.title}**${tStr}${povStr}\n`;
                     if (n.content) md += '  '.repeat(depth + 1) + `  ${n.content}\n`;
+                    if (n.type && n.typeData) {
+                        const tf = TYPE_FIELDS[n.type] || [];
+                        tf.forEach(f => {
+                            const v = n.typeData[f.key];
+                            if (v && String(v).trim()) {
+                                md += '  '.repeat(depth + 1) + `  - **${f.label}:** ${v}\n`;
+                            }
+                        });
+                    }
                     walk(n.id, depth + 1);
                 });
             }
@@ -4546,7 +5812,7 @@
             const a = document.createElement('a');
             a.href = url;
             const safeTitle = (currentStory ? currentStory.title : 'mapa').toLowerCase().replace(/\s+/g, '_');
-            const safeSheet = (mindMapData.name || 'pagina').toLowerCase().replace(/\s+/g, '_');
+            const safeSheet = sheetName.toLowerCase().replace(/\s+/g, '_');
             a.download = `${safeTitle}_${safeSheet}.md`;
             a.click(); URL.revokeObjectURL(url);
         }
@@ -4574,7 +5840,7 @@
                         let story;
                         if (imported.sheets && Array.isArray(imported.sheets)) story = migrateStoryToSheets(imported);
                         else if (imported.nodes && imported.title) story = migrateStoryToSheets(imported);
-                        else { alert("Formato JSON não reconhecido."); return; }
+                        else { showToast("Formato JSON não reconhecido.", "error"); return; }
                         const newKey = 'story_' + Date.now() + '-' + Math.random().toString(36).slice(2, 6);
                         storiesDatabase[newKey] = story;
                         currentStoryKey = newKey; currentStory = story;
@@ -4587,7 +5853,10 @@
                         focusModeNodeId = null; updateFocusPill();
                         closeInspector(); closeRelationshipEditor();
                         searchQuery = '';
+                        searchResults = [];
+                        searchResultIndex = -1;
                         document.getElementById('search-input').value = '';
+                        updateSearchNav();
                         applyTheme(mindMapData.theme || 'default');
                         document.getElementById('layout-select').value = mindMapData.layout || 'tree';
                         setTool('select');
@@ -4595,9 +5864,10 @@
                         syncBeatSortUI();
                         resetHistory(); saveStoriesStorage(); renderApp(); renderSheetTabs();
                         requestAnimationFrame(() => requestAnimationFrame(fitView));
+                        showToast("História importada com sucesso!", "success");
                     } catch (error) {
                         console.error(error);
-                        alert("Arquivo JSON inválido.");
+                        showToast("Arquivo JSON inválido.", "error");
                     }
                 };
             }
@@ -4609,10 +5879,46 @@
                 const inInput = e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.isContentEditable;
                 if (inInput) return;
 
+                if ((e.ctrlKey || e.metaKey) && e.shiftKey) {
+                    const map = {
+                        'ArrowLeft':  'left',
+                        'ArrowRight': 'right',
+                        'ArrowUp':    'top',
+                        'ArrowDown':  'bottom',
+                        'KeyH':       'distribute-h',
+                        'KeyV':       'distribute-v',
+                        'KeyC':       'center-h',
+                        'KeyM':       'center-v'
+                    };
+                    if (map[e.code] && selectedNodeIds.size >= 2) {
+                        e.preventDefault();
+                        alignSelectedNodes(map[e.code]);
+                        return;
+                    }
+                }
+
+                if ((e.ctrlKey || e.metaKey) && e.code === 'KeyD' && !e.shiftKey) {
+                    if (selectedNodeIds.size > 0) {
+                        e.preventDefault();
+                        pushHistory();
+                        const newIds = duplicateSelectedNodesInPlace();
+                        selectedNodeIds.clear();
+                        newIds.forEach(id => selectedNodeIds.add(id));
+                        saveStoriesStorage(); renderApp();
+                    }
+                    return;
+                }
+
                 if (e.key === 'Escape') {
                     const pickerModal = document.getElementById('beat-picker-modal');
                     if (pickerModal && !pickerModal.classList.contains('hidden')) {
                         e.preventDefault(); closeBeatSheetPicker(); return;
+                    }
+                    // Escape também esconde o tooltip
+                    if (hoveredNodeId) {
+                        e.preventDefault();
+                        hideNodeTooltip();
+                        return;
                     }
                     if (focusModeNodeId) { exitFocusMode(); return; }
                     if (relationshipSourceId) { relationshipSourceId = null; renderApp(); return; }
@@ -4633,6 +5939,11 @@
                 }
                 if ((e.ctrlKey || e.metaKey) && e.code === 'KeyV' && !e.shiftKey) {
                     if (nodeClipboard && nodeClipboard.nodes.length > 0) { e.preventDefault(); pasteClipboard(); return; }
+                }
+                if ((e.ctrlKey || e.metaKey) && e.code === 'KeyF' && !e.shiftKey) {
+                    e.preventDefault();
+                    document.getElementById('search-input').focus();
+                    return;
                 }
 
                 if (e.code === 'Delete' || e.code === 'Backspace') { e.preventDefault(); deleteSelectedNodes(); return; }

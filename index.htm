@@ -108,7 +108,6 @@
             background: #0f172a;
         }
 
-        /* ==================== NOVO: Node tooltip (hover preview) ==================== */
         #node-tooltip {
             position: fixed;
             max-width: 380px;
@@ -203,7 +202,6 @@
             color: #94a3b8;
             font-size: 10px;
         }
-        /* Dark theme */
         body.app-theme-dark #node-tooltip {
             background: #1e293b;
             border-color: #334155;
@@ -511,11 +509,15 @@
                         <i class="fa-brands fa-markdown text-slate-700 w-4"></i><span>Markdown (.md)</span>
                     </button>
                     <div class="h-px bg-slate-200 my-1"></div>
-                    <button onclick="closeExportMenu(); exportData()" class="w-full text-left px-4 py-2 text-xs text-slate-700 hover:bg-slate-100 flex items-center space-x-2">
-                        <i class="fa-solid fa-download text-slate-500 w-4"></i><span>JSON (todas as abas)</span>
+                    <button onclick="closeExportMenu(); exportDataWithDialog()" class="w-full text-left px-4 py-2 text-xs text-slate-700 hover:bg-slate-100 flex items-center space-x-2">
+                        <i class="fa-solid fa-download text-slate-500 w-4"></i>
+                        <span class="flex-1">Salvar como JSON...</span>
+                        <span class="text-[9px] text-slate-400 font-mono">Ctrl+S</span>
                     </button>
                     <label class="w-full text-left px-4 py-2 text-xs text-slate-700 hover:bg-slate-100 flex items-center space-x-2 cursor-pointer">
-                        <i class="fa-solid fa-upload text-slate-500 w-4"></i><span>Importar JSON</span>
+                        <i class="fa-solid fa-upload text-slate-500 w-4"></i>
+                        <span class="flex-1">Abrir JSON...</span>
+                        <span class="text-[9px] text-slate-400 font-mono">Ctrl+O</span>
                         <input type="file" id="import-file" accept=".json" class="hidden" onchange="importData(event)">
                     </label>
                 </div>
@@ -776,7 +778,12 @@
                 <div class="absolute bottom-4 left-4 bg-white/90 backdrop-blur border border-slate-200 rounded-xl shadow-lg px-3 py-2 text-[11px] text-slate-600 z-20 pointer-events-none flex items-center space-x-3 flex-wrap max-w-[calc(100%-2rem)]">
                     <div><i class="fa-solid fa-circle-info text-indigo-500 mr-1"></i>Ferramenta: <span id="current-tool-label" class="font-bold text-slate-800">Seleção</span></div>
                     <div class="w-px h-3 bg-slate-300"></div>
-                    <div class="hidden md:block"><kbd class="px-1 bg-slate-100 rounded text-[10px] border border-slate-300">P</kbd> preview · <kbd class="px-1 bg-slate-100 rounded text-[10px] border border-slate-300">Ctrl+Shift+setas</kbd> alinhar · <kbd class="px-1 bg-slate-100 rounded text-[10px] border border-slate-300">Ctrl+D</kbd> duplicar · <kbd class="px-1 bg-slate-100 rounded text-[10px] border border-slate-300">Alt+arrastar</kbd> duplicar</div>
+                    <div class="hidden md:block">
+                        <kbd class="px-1 bg-slate-100 rounded text-[10px] border border-slate-300">Ctrl+S</kbd> salvar · 
+                        <kbd class="px-1 bg-slate-100 rounded text-[10px] border border-slate-300">Ctrl+O</kbd> abrir · 
+                        <kbd class="px-1 bg-slate-100 rounded text-[10px] border border-slate-300">P</kbd> preview · 
+                        <kbd class="px-1 bg-slate-100 rounded text-[10px] border border-slate-300">Ctrl+D</kbd> duplicar
+                    </div>
                     <div class="md:hidden">Toque: 1 dedo mover · 2 dedos zoom · duplo-toque editar</div>
                 </div>
             </div>
@@ -846,7 +853,6 @@
                             </select>
                         </div>
 
-                        <!-- NOVO: POV em multi-seleção -->
                         <div class="bg-violet-50 border border-violet-200 rounded-lg p-3">
                             <label class="block text-xs font-semibold text-violet-700 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
                                 <i class="fa-solid fa-eye"></i>
@@ -1428,7 +1434,6 @@
         let isDraggingMinimap = false;
         let tensionStripVisible = true;
 
-        // NOVO: estado do tooltip de preview
         let hoveredNodeId = null;
         let tooltipTimer = null;
         let previewHeld = false;
@@ -1698,13 +1703,11 @@
         }
 
         // ==========================================================
-        // NOVO: TOOLTIP DE PREVIEW
+        // TOOLTIP DE PREVIEW
         // ==========================================================
         function buildTooltipHTML(node) {
             if (!node) return '';
-            // Só mostra para nós "especiais" (tipo definido OU POV definido)
             if (!node.type && !node.pov) return '';
-            // Não mostra enquanto o nó está sendo editado inline
             if (editingNodeId === node.id) return '';
 
             const typeDef = node.type ? NODE_TYPES[node.type] : null;
@@ -1717,7 +1720,6 @@
 
             let html = '';
 
-            // Badges
             const badges = [];
             if (typeDef) {
                 badges.push(`<span class="tt-badge" style="background:${typeDef.color}">${typeDef.icon} ${escapeHTML(typeDef.label)}</span>`);
@@ -1733,15 +1735,12 @@
                 html += `<div class="tt-badges">${badges.join('')}</div>`;
             }
 
-            // Título
             html += `<div class="tt-title">${escapeHTML(node.title || '')}</div>`;
 
-            // POV
             if (node.pov && node.pov.trim()) {
                 html += `<div class="tt-pov"><i class="fa-solid fa-eye"></i> POV: ${escapeHTML(node.pov)}</div>`;
             }
 
-            // Campos do tipo
             if (filledFields.length > 0) {
                 filledFields.forEach(f => {
                     const v = String(node.typeData[f.key]);
@@ -1751,12 +1750,10 @@
                 html += `<div class="tt-empty">Nenhum detalhe preenchido ainda.</div>`;
             }
 
-            // Conteúdo (notas)
             if (node.content && node.content.trim()) {
                 html += `<div class="tt-content">${escapeHTML(node.content)}</div>`;
             }
 
-            // Dica
             html += `<div class="tt-hint"><i class="fa-solid fa-hand-pointer mr-1"></i>Clique para editar · segure <b>P</b> para preview imediato</div>`;
 
             return html;
@@ -1777,11 +1774,9 @@
             tt.innerHTML = html;
             tt.classList.remove('hidden');
 
-            // Força reflow para medir
             void tt.offsetWidth;
             const ttRect = tt.getBoundingClientRect();
 
-            // Preferência: à direita do card; se não couber, à esquerda
             let left = cardRect.right + 12;
             let top = cardRect.top;
             if (left + ttRect.width > window.innerWidth - 12) {
@@ -1842,20 +1837,16 @@
                 if (!card) return;
                 const related = e.relatedTarget;
                 const relatedCard = related && related.closest ? related.closest('[data-node-id]') : null;
-                if (relatedCard === card) return;   // ainda no mesmo card
-                if (relatedCard) return;            // foi para outro card — mouseover lida
+                if (relatedCard === card) return;
+                if (relatedCard) return;
                 hoveredNodeId = null;
                 hideNodeTooltip();
             });
 
-            // Esconde ao dar qualquer pointerdown (capture para pegar antes dos handlers do nó)
             window.addEventListener('pointerdown', () => { hideNodeTooltip(); }, true);
-
-            // Esconde ao rolar/zoom
             canvas.addEventListener('wheel', () => { hideNodeTooltip(); }, { passive: true });
             canvas.addEventListener('scroll', () => { hideNodeTooltip(); }, { passive: true });
 
-            // Shift+P — segurar P mostra preview imediato
             window.addEventListener('keydown', (e) => {
                 if (e.code === 'KeyP' && !e.ctrlKey && !e.metaKey && !e.shiftKey && !e.altKey) {
                     const inInput = e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.isContentEditable;
@@ -1869,7 +1860,6 @@
                 if (e.code === 'KeyP') {
                     previewHeld = false;
                     hideNodeTooltip();
-                    // Reagenda o tooltip com delay padrão se ainda houver hover
                     if (hoveredNodeId) scheduleTooltipForHovered();
                 }
             });
@@ -2073,9 +2063,6 @@
             openMultiInspector();
         }
 
-        // ==========================================================
-        // NOVO: MULTI-POV
-        // ==========================================================
         function applyMultiPovFromInput() {
             const input = document.getElementById('multi-pov-input');
             if (!input) return;
@@ -2833,7 +2820,6 @@
             const typeSelect = document.getElementById('multi-type-select');
             if (typeSelect) typeSelect.value = '';
 
-            // NOVO: prefill POV comum
             const povs = Array.from(selectedNodeIds).map(id => {
                 const n = mindMapData.nodes.find(x => x.id === id);
                 return n ? (n.pov || '') : '';
@@ -5817,6 +5803,69 @@
             a.click(); URL.revokeObjectURL(url);
         }
 
+        // ==============================================================
+        // SALVAR COMO (Ctrl+S) e ABRIR (Ctrl+O)
+        // ==============================================================
+        async function exportDataWithDialog() {
+            if (!currentStory || !mindMapData) return;
+            const idx = currentStory.sheets.findIndex(s => s.id === mindMapData.id);
+            if (idx >= 0) currentStory.sheets[idx] = mindMapData;
+            currentStory.activeSheetId = mindMapData.id;
+
+            const json = JSON.stringify(currentStory, null, 2);
+            const safeTitle = (currentStory.title || 'mapa')
+                .toLowerCase()
+                .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+                .replace(/[^a-z0-9]+/g, '_')
+                .replace(/^_+|_+$/g, '')
+                || 'mapa';
+            const suggestedName = `${safeTitle}_mindmap.json`;
+
+            if (typeof window.showSaveFilePicker === 'function') {
+                try {
+                    const handle = await window.showSaveFilePicker({
+                        suggestedName,
+                        types: [{
+                            description: 'Mapa mental StoryMind (JSON)',
+                            accept: { 'application/json': ['.json'] }
+                        }]
+                    });
+                    const writable = await handle.createWritable();
+                    await writable.write(json);
+                    await writable.close();
+                    showToast('Mapa salvo com sucesso!', 'success');
+                    return;
+                } catch (err) {
+                    if (err && err.name === 'AbortError') {
+                        return;
+                    }
+                    console.warn('showSaveFilePicker falhou, usando fallback:', err);
+                }
+            }
+
+            fallbackDownloadJSON(json, suggestedName);
+        }
+
+        function fallbackDownloadJSON(json, filename) {
+            const blob = new Blob([json], { type: 'application/json;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            setTimeout(() => URL.revokeObjectURL(url), 1000);
+            showToast('Download iniciado — verifique a pasta de downloads.', 'info', 4000);
+        }
+
+        function openImportDialog() {
+            const input = document.getElementById('import-file');
+            if (!input) return;
+            input.value = '';
+            input.click();
+        }
+
         function exportData() {
             if (!currentStory) return;
             const idx = currentStory.sheets.findIndex(s => s.id === mindMapData.id);
@@ -5914,7 +5963,6 @@
                     if (pickerModal && !pickerModal.classList.contains('hidden')) {
                         e.preventDefault(); closeBeatSheetPicker(); return;
                     }
-                    // Escape também esconde o tooltip
                     if (hoveredNodeId) {
                         e.preventDefault();
                         hideNodeTooltip();
@@ -5925,6 +5973,22 @@
                     if (selectedRelationshipId) { closeRelationshipEditor(); renderApp(); return; }
                     selectedNodeIds.clear(); closeInspector(); renderApp();
                     closeExportMenu();
+                    return;
+                }
+
+                // Ctrl+S — Salvar como (abre diálogo nativo)
+                if ((e.ctrlKey || e.metaKey) && e.code === 'KeyS' && !e.shiftKey && !e.altKey) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    exportDataWithDialog();
+                    return;
+                }
+
+                // Ctrl+O — Abrir JSON
+                if ((e.ctrlKey || e.metaKey) && e.code === 'KeyO' && !e.shiftKey && !e.altKey) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    openImportDialog();
                     return;
                 }
 

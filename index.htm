@@ -93,20 +93,14 @@
             transition: background 0.15s;
             outline: none;
         }
-        #story-title-display:hover {
-            background: #f1f5f9;
-        }
+        #story-title-display:hover { background: #f1f5f9; }
         #story-title-display[contenteditable="true"] {
             background: white;
             box-shadow: 0 0 0 2px #6366f1;
             cursor: text;
         }
-        body.app-theme-dark #story-title-display:hover {
-            background: #334155;
-        }
-        body.app-theme-dark #story-title-display[contenteditable="true"] {
-            background: #0f172a;
-        }
+        body.app-theme-dark #story-title-display:hover { background: #334155; }
+        body.app-theme-dark #story-title-display[contenteditable="true"] { background: #0f172a; }
 
         #node-tooltip {
             position: fixed;
@@ -130,81 +124,47 @@
         }
         #node-tooltip::-webkit-scrollbar { width: 4px; }
         #node-tooltip .tt-badges {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 4px;
-            margin-bottom: 8px;
-            padding-bottom: 8px;
+            display: flex; flex-wrap: wrap; gap: 4px;
+            margin-bottom: 8px; padding-bottom: 8px;
             border-bottom: 1px solid #e2e8f0;
         }
         #node-tooltip .tt-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            padding: 2px 8px;
-            border-radius: 999px;
-            font-size: 10px;
-            font-weight: 700;
-            color: white;
+            display: inline-flex; align-items: center; gap: 4px;
+            padding: 2px 8px; border-radius: 999px;
+            font-size: 10px; font-weight: 700; color: white;
         }
         #node-tooltip .tt-title {
-            font-weight: 700;
-            font-size: 13px;
-            color: #0f172a;
-            margin-bottom: 8px;
-            word-break: break-word;
+            font-weight: 700; font-size: 13px; color: #0f172a;
+            margin-bottom: 8px; word-break: break-word;
         }
         #node-tooltip .tt-pov {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            padding: 3px 9px;
-            border-radius: 999px;
-            background: #ede9fe;
-            color: #6d28d9;
-            font-size: 10.5px;
-            font-weight: 600;
-            margin-bottom: 8px;
+            display: inline-flex; align-items: center; gap: 5px;
+            padding: 3px 9px; border-radius: 999px;
+            background: #ede9fe; color: #6d28d9;
+            font-size: 10.5px; font-weight: 600; margin-bottom: 8px;
         }
-        #node-tooltip .tt-row {
-            margin-bottom: 4px;
-            word-break: break-word;
-        }
+        #node-tooltip .tt-row { margin-bottom: 4px; word-break: break-word; }
         #node-tooltip .tt-label {
-            color: #64748b;
-            font-weight: 600;
-            font-size: 10.5px;
-            text-transform: uppercase;
-            letter-spacing: 0.02em;
+            color: #64748b; font-weight: 600; font-size: 10.5px;
+            text-transform: uppercase; letter-spacing: 0.02em;
         }
-        #node-tooltip .tt-value {
-            color: #1e293b;
-        }
+        #node-tooltip .tt-value { color: #1e293b; }
         #node-tooltip .tt-content {
-            color: #475569;
-            font-style: italic;
-            margin-top: 8px;
-            padding-top: 8px;
+            color: #475569; font-style: italic;
+            margin-top: 8px; padding-top: 8px;
             border-top: 1px dashed #e2e8f0;
-            font-size: 11.5px;
-            line-height: 1.5;
-            white-space: pre-wrap;
+            font-size: 11.5px; line-height: 1.5; white-space: pre-wrap;
         }
         #node-tooltip .tt-empty {
-            color: #94a3b8;
-            font-style: italic;
-            font-size: 11px;
+            color: #94a3b8; font-style: italic; font-size: 11px;
         }
         #node-tooltip .tt-hint {
-            margin-top: 10px;
-            padding-top: 8px;
+            margin-top: 10px; padding-top: 8px;
             border-top: 1px solid #f1f5f9;
-            color: #94a3b8;
-            font-size: 10px;
+            color: #94a3b8; font-size: 10px;
         }
         body.app-theme-dark #node-tooltip {
-            background: #1e293b;
-            border-color: #334155;
+            background: #1e293b; border-color: #334155;
         }
         body.app-theme-dark #node-tooltip .tt-badges { border-bottom-color: #334155; }
         body.app-theme-dark #node-tooltip .tt-title { color: #f1f5f9; }
@@ -212,16 +172,115 @@
         body.app-theme-dark #node-tooltip .tt-label { color: #94a3b8; }
         body.app-theme-dark #node-tooltip .tt-value { color: #e2e8f0; }
         body.app-theme-dark #node-tooltip .tt-content {
-            color: #cbd5e1;
-            border-top-color: #334155;
+            color: #cbd5e1; border-top-color: #334155;
         }
         body.app-theme-dark #node-tooltip .tt-empty { color: #64748b; }
         body.app-theme-dark #node-tooltip .tt-hint { border-top-color: #334155; color: #64748b; }
 
-        body.app-theme-dark {
-            background: #0f172a;
-            color: #e2e8f0;
+        /* ==================== Variantes "E se..." ==================== */
+        .node-card.is-variant {
+            border-style: dashed !important;
+            border-color: #a855f7 !important;
+            border-left-width: 4px !important;
+            opacity: 0.9;
         }
+        .node-card.is-variant.is-selected {
+            border-color: #6366f1 !important;
+            border-style: solid !important;
+        }
+        .variant-badge {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: #a855f7;
+            color: white;
+            font-size: 9px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 999px;
+            box-shadow: 0 2px 6px rgba(168,85,247,0.4);
+            z-index: 15;
+            pointer-events: none;
+            max-width: 180px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .variant-link {
+            stroke: #a855f7;
+            stroke-width: 2;
+            stroke-dasharray: 6 6;
+            fill: none;
+            opacity: 0.55;
+        }
+
+        /* ==================== Story Bible ==================== */
+        #bible-modal .bible-section { margin-bottom: 24px; }
+        #bible-modal .bible-section-title {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #64748b;
+            padding-bottom: 6px;
+            border-bottom: 1px solid #e2e8f0;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        #bible-modal .bible-entry {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.1s;
+            font-size: 12px;
+            border-left: 3px solid transparent;
+        }
+        #bible-modal .bible-entry:hover { background: #f1f5f9; }
+        #bible-modal .bible-entry.is-variant {
+            border-left-color: #a855f7;
+            border-left-style: dashed;
+            opacity: 0.75;
+        }
+        #bible-modal .bible-key {
+            font-weight: 600;
+            color: #1e293b;
+            flex: 1;
+            min-width: 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        #bible-modal .bible-meta {
+            font-size: 10px;
+            color: #94a3b8;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        #bible-modal .bible-count {
+            background: #e0e7ff;
+            color: #4338ca;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 1px 7px;
+            border-radius: 999px;
+            flex-shrink: 0;
+        }
+        body.app-theme-dark #bible-modal .bible-entry:hover { background: #334155; }
+        body.app-theme-dark #bible-modal .bible-section-title {
+            color: #94a3b8; border-bottom-color: #334155;
+        }
+        body.app-theme-dark #bible-modal .bible-key { color: #e2e8f0; }
+        body.app-theme-dark #bible-modal .bible-count { background: #312e81; color: #c7d2fe; }
+
+        body.app-theme-dark { background: #0f172a; color: #e2e8f0; }
         body.app-theme-dark header,
         body.app-theme-dark aside,
         body.app-theme-dark #inspector-sidebar,
@@ -232,32 +291,24 @@
         }
         body.app-theme-dark #story-modal > div,
         body.app-theme-dark #beat-picker-modal > div,
-        body.app-theme-dark #rel-editor {
+        body.app-theme-dark #rel-editor,
+        body.app-theme-dark #variant-modal > div,
+        body.app-theme-dark #bible-modal > div {
             background: #1e293b !important;
             border-color: #334155 !important;
             color: #e2e8f0;
         }
         body.app-theme-dark .bg-slate-50,
-        body.app-theme-dark .bg-slate-100 {
-            background: #334155 !important;
-        }
-        body.app-theme-dark .bg-white {
-            background: #1e293b !important;
-        }
+        body.app-theme-dark .bg-slate-100 { background: #334155 !important; }
+        body.app-theme-dark .bg-white { background: #1e293b !important; }
         body.app-theme-dark .border-slate-200,
-        body.app-theme-dark .border-slate-300 {
-            border-color: #334155 !important;
-        }
+        body.app-theme-dark .border-slate-300 { border-color: #334155 !important; }
         body.app-theme-dark .text-slate-900,
         body.app-theme-dark .text-slate-800,
         body.app-theme-dark .text-slate-700,
-        body.app-theme-dark .text-slate-600 {
-            color: #e2e8f0 !important;
-        }
+        body.app-theme-dark .text-slate-600 { color: #e2e8f0 !important; }
         body.app-theme-dark .text-slate-500,
-        body.app-theme-dark .text-slate-400 {
-            color: #94a3b8 !important;
-        }
+        body.app-theme-dark .text-slate-400 { color: #94a3b8 !important; }
         body.app-theme-dark input,
         body.app-theme-dark textarea,
         body.app-theme-dark select {
@@ -266,12 +317,8 @@
             color: #e2e8f0 !important;
         }
         body.app-theme-dark .hover\:bg-slate-100:hover,
-        body.app-theme-dark .hover\:bg-slate-200:hover {
-            background: #475569 !important;
-        }
-        body.app-theme-dark .sheet-tab:not(.active) {
-            background: #334155; color: #cbd5e1;
-        }
+        body.app-theme-dark .hover\:bg-slate-200:hover { background: #475569 !important; }
+        body.app-theme-dark .sheet-tab:not(.active) { background: #334155; color: #cbd5e1; }
         body.app-theme-dark .sheet-tab.active {
             background: #312e81; color: #c7d2fe;
             border-top-color: #818cf8; border-bottom-color: #818cf8;
@@ -324,21 +371,14 @@
         .sheet-tab.dragging { opacity: 0.4; }
 
         #minimap {
-            background: white;
-            border: 2px solid #cbd5e1;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            overflow: hidden;
-            transition: opacity 0.2s, transform 0.2s;
-            cursor: pointer;
+            background: white; border: 2px solid #cbd5e1; border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1); overflow: hidden;
+            transition: opacity 0.2s, transform 0.2s; cursor: pointer;
         }
         #minimap.hidden-minimap { opacity: 0; transform: translateY(8px); pointer-events: none; }
         #minimap canvas { display: block; }
 
-        #tension-strip {
-            transition: max-height 0.25s ease, opacity 0.2s;
-            overflow: hidden;
-        }
+        #tension-strip { transition: max-height 0.25s ease, opacity 0.2s; overflow: hidden; }
         #tension-strip.collapsed { max-height: 0 !important; opacity: 0; }
 
         input[type="range"].tension-slider {
@@ -395,13 +435,9 @@
         .beat-lane-label .bl-count.empty { background: #cbd5e1; color: #475569; }
 
         .fw-card {
-            text-align: left;
-            padding: 16px;
-            border-radius: 12px;
-            border: 2px solid #e2e8f0;
-            background: white;
-            cursor: pointer;
-            transition: all 0.15s ease;
+            text-align: left; padding: 16px; border-radius: 12px;
+            border: 2px solid #e2e8f0; background: white;
+            cursor: pointer; transition: all 0.15s ease;
         }
         .fw-card:hover {
             border-color: #a5b4fc;
@@ -409,17 +445,12 @@
             transform: translateY(-1px);
         }
         .fw-card.active {
-            border-color: #6366f1;
-            background: #eef2ff;
+            border-color: #6366f1; background: #eef2ff;
             box-shadow: 0 8px 16px -8px rgba(99,102,241,0.35);
         }
         .fw-card .fw-preview {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 4px;
-            font-size: 16px;
-            line-height: 1;
-            margin-bottom: 8px;
+            display: flex; flex-wrap: wrap; gap: 4px;
+            font-size: 16px; line-height: 1; margin-bottom: 8px;
         }
 
         @media (max-width: 768px) {
@@ -528,6 +559,11 @@
                 <span class="hidden md:inline">Organizar</span>
             </button>
 
+            <button id="btn-toggle-variants" onclick="toggleShowVariants()" class="bg-purple-600 hover:bg-purple-700 text-white px-2.5 py-1.5 rounded-lg text-xs font-medium transition flex items-center space-x-1.5 shadow-sm" title="Mostrar/Ocultar variantes 'E se...'">
+                <i class="fa-solid fa-flask"></i>
+                <span class="hidden md:inline">Variantes</span>
+            </button>
+
             <button id="btn-organize-beat" onclick="toggleBeatSortMode()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-2.5 py-1.5 rounded-lg text-xs font-medium transition flex items-center space-x-1.5 disabled:opacity-40 disabled:cursor-not-allowed" title="Organizar por Sequência Narrativa (Beats)">
                 <i class="fa-solid fa-arrows-left-right-to-line"></i>
                 <span class="hidden md:inline">Por Beat</span>
@@ -591,6 +627,9 @@
             </button>
             <button onclick="toggleMinimap()" class="w-10 h-10 rounded-xl text-slate-600 hover:bg-slate-100 flex items-center justify-center transition" title="Minimapa (M)">
                 <i class="fa-solid fa-map"></i>
+            </button>
+            <button onclick="openStoryBible()" class="w-10 h-10 rounded-xl text-purple-600 hover:bg-purple-50 flex items-center justify-center transition" title="Bíblia da História (Ctrl+B)">
+                <i class="fa-solid fa-book-bible"></i>
             </button>
 
             <div class="w-8 h-px bg-slate-200 my-1"></div>
@@ -779,10 +818,10 @@
                     <div><i class="fa-solid fa-circle-info text-indigo-500 mr-1"></i>Ferramenta: <span id="current-tool-label" class="font-bold text-slate-800">Seleção</span></div>
                     <div class="w-px h-3 bg-slate-300"></div>
                     <div class="hidden md:block">
+                        <kbd class="px-1 bg-slate-100 rounded text-[10px] border border-slate-300">E</kbd> variante · 
+                        <kbd class="px-1 bg-slate-100 rounded text-[10px] border border-slate-300">Ctrl+B</kbd> bíblia · 
                         <kbd class="px-1 bg-slate-100 rounded text-[10px] border border-slate-300">Ctrl+S</kbd> salvar · 
-                        <kbd class="px-1 bg-slate-100 rounded text-[10px] border border-slate-300">Ctrl+O</kbd> abrir · 
-                        <kbd class="px-1 bg-slate-100 rounded text-[10px] border border-slate-300">P</kbd> preview · 
-                        <kbd class="px-1 bg-slate-100 rounded text-[10px] border border-slate-300">Ctrl+D</kbd> duplicar
+                        <kbd class="px-1 bg-slate-100 rounded text-[10px] border border-slate-300">P</kbd> preview
                     </div>
                     <div class="md:hidden">Toque: 1 dedo mover · 2 dedos zoom · duplo-toque editar</div>
                 </div>
@@ -905,6 +944,31 @@
                             <p class="text-[10px] text-slate-400 mt-1">Opcional. Quando preenchido, aparece como etiqueta no card e é sugerido em outros nós.</p>
                         </div>
 
+                        <div>
+                            <div class="flex items-center justify-between mb-1">
+                                <label class="text-xs font-semibold text-slate-600 uppercase tracking-wider flex items-center gap-1.5">
+                                    <i class="fa-solid fa-flask text-purple-500"></i>
+                                    <span>Variante "E se..."</span>
+                                </label>
+                                <span class="text-[9px] font-mono text-slate-400">E</span>
+                            </div>
+                            <button id="btn-create-variant" onclick="openVariantModal()" class="w-full bg-purple-50 hover:bg-purple-100 text-purple-700 px-3 py-2 rounded-lg text-xs font-semibold transition flex items-center justify-center space-x-1.5 border border-purple-200">
+                                <i class="fa-solid fa-flask"></i><span>Criar variante a partir deste nó</span>
+                            </button>
+                            <div id="variant-actions" class="hidden bg-purple-50 border border-purple-200 rounded-lg p-2 space-y-1.5">
+                                <div class="text-[10px] font-bold uppercase tracking-wider text-purple-700 flex items-center gap-1.5 px-1">
+                                    <i class="fa-solid fa-flask"></i>
+                                    <span>Variante: <b id="variant-actions-label" class="truncate inline-block max-w-[150px] align-bottom">—</b></span>
+                                </div>
+                                <button onclick="promoteCurrentVariant()" class="w-full bg-purple-600 hover:bg-purple-700 text-white px-3 py-2 rounded-lg text-xs font-semibold transition flex items-center justify-center space-x-1.5">
+                                    <i class="fa-solid fa-circle-check"></i><span>Promover a canônico</span>
+                                </button>
+                                <button onclick="removeVariantFlag()" class="w-full bg-white hover:bg-slate-50 text-purple-700 border border-purple-200 px-3 py-2 rounded-lg text-xs font-semibold transition flex items-center justify-center space-x-1.5">
+                                    <i class="fa-solid fa-rotate-left"></i><span>Tornar canônico sem substituir</span>
+                                </button>
+                            </div>
+                        </div>
+
                         <div id="beat-field-container" class="hidden bg-indigo-50 border border-indigo-200 rounded-lg p-3">
                             <label class="block text-xs font-semibold text-indigo-700 uppercase tracking-wider mb-1 flex items-center gap-1.5">
                                 <i class="fa-solid fa-layer-group"></i>
@@ -1012,7 +1076,6 @@
                     <label class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-1">Título da História</label>
                     <input type="text" id="modal-story-title" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-sm text-slate-800 focus:ring-2 focus:ring-indigo-500 outline-none">
                 </div>
-
                 <div class="bg-slate-50 border border-slate-200 rounded-lg p-3">
                     <div class="flex justify-between mb-1.5">
                         <span class="text-xs font-semibold text-slate-600 uppercase tracking-wider">Armazenamento local</span>
@@ -1026,7 +1089,6 @@
                         Salvo no navegador (localStorage). Faça backup regular em <b>Exportar → JSON</b>.
                     </p>
                 </div>
-
                 <div class="flex justify-between items-center pt-2">
                     <button onclick="deleteCurrentStory()" class="text-rose-600 hover:text-rose-700 text-xs font-semibold flex items-center space-x-1">
                         <i class="fa-solid fa-trash"></i><span>Excluir História</span>
@@ -1068,6 +1130,78 @@
                     <button onclick="closeBeatSheetPicker()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-sm font-medium transition">Cancelar</button>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div id="variant-modal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md overflow-hidden">
+            <div class="px-6 py-4 border-b border-purple-200 bg-purple-50 flex items-center justify-between">
+                <h3 class="font-bold text-purple-900 text-base flex items-center gap-2">
+                    <i class="fa-solid fa-flask"></i>
+                    <span>Criar variante "E se..."</span>
+                </h3>
+                <button onclick="closeVariantModal()" class="text-purple-400 hover:text-purple-700"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            <div class="p-6 space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-1">Rótulo da variante</label>
+                    <input type="text" id="variant-label-input" placeholder="Ex: E se ela perder?" maxlength="60"
+                           onkeydown="if(event.key==='Enter'){event.preventDefault();confirmCreateVariant();}"
+                           class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-sm text-slate-800 focus:ring-2 focus:ring-purple-500 outline-none">
+                </div>
+                <div class="text-[11px] text-slate-500 bg-purple-50 border border-purple-100 rounded-lg px-3 py-2 leading-relaxed">
+                    <i class="fa-solid fa-circle-info text-purple-500 mr-1"></i>
+                    A variante nasce num <b>sub-ramo separado</b>, ligada ao nó original por uma linha tracejada roxa. Tudo que você criar a partir dela herda o status de variante. Depois, você pode promovê-la a canônica com um clique.
+                </div>
+                <div class="flex justify-end gap-2 pt-2">
+                    <button onclick="closeVariantModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-sm font-medium transition">Cancelar</button>
+                    <button onclick="confirmCreateVariant()" class="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg text-sm font-medium transition">Criar variante</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="bible-modal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-5xl h-[88vh] flex flex-col overflow-hidden">
+            <div class="px-6 py-4 border-b border-slate-200 bg-slate-50 shrink-0 flex items-center justify-between">
+                <div>
+                    <h3 class="font-bold text-slate-800 text-base flex items-center gap-2">
+                        <i class="fa-solid fa-book-bible text-purple-600"></i>
+                        <span>Bíblia da História</span>
+                    </h3>
+                    <p class="text-[11px] text-slate-500 mt-0.5">Visão consolidada de todos os elementos narrativos do mapa.</p>
+                </div>
+                <button onclick="closeStoryBible()" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+
+            <div class="px-6 py-3 border-b border-slate-200 bg-white shrink-0 flex flex-wrap items-center gap-2">
+                <div class="relative flex-1 min-w-[180px]">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                    <input type="text" id="bible-search" oninput="renderStoryBible()" placeholder="Buscar na bíblia..." class="w-full bg-slate-100 border border-slate-300 rounded-lg pl-8 pr-3 py-1.5 text-xs outline-none focus:ring-2 focus:ring-purple-500">
+                </div>
+                <select id="bible-filter-type" onchange="renderStoryBible()" class="bg-slate-100 border border-slate-300 text-slate-700 text-xs rounded-lg px-2 py-1.5 outline-none focus:ring-2 focus:ring-purple-500">
+                    <option value="">Todos os tipos</option>
+                    <option value="character">🧙 Personagens</option>
+                    <option value="location">📍 Cenários</option>
+                    <option value="event">⚡ Eventos</option>
+                    <option value="dialogue">💬 Diálogos</option>
+                    <option value="theme">🎭 Temas</option>
+                    <option value="scene">🎬 Cenas</option>
+                </select>
+                <select id="bible-filter-beat" onchange="renderStoryBible()" class="bg-slate-100 border border-slate-300 text-slate-700 text-xs rounded-lg px-2 py-1.5 outline-none focus:ring-2 focus:ring-purple-500">
+                    <option value="">Todos os beats</option>
+                </select>
+                <label class="flex items-center gap-1.5 text-xs text-slate-600 bg-slate-100 border border-slate-300 rounded-lg px-2.5 py-1.5 cursor-pointer hover:bg-slate-200 transition">
+                    <input type="checkbox" id="bible-include-variants" onchange="renderStoryBible()" class="accent-purple-600">
+                    <span>Incluir variantes</span>
+                </label>
+                <button onclick="exportStoryBible()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-2.5 py-1.5 rounded-lg text-xs font-medium transition flex items-center gap-1.5" title="Exportar bíblia como Markdown">
+                    <i class="fa-brands fa-markdown"></i>
+                    <span class="hidden md:inline">Exportar</span>
+                </button>
+            </div>
+
+            <div id="bible-content" class="flex-1 overflow-y-auto px-6 py-4 bg-white"></div>
         </div>
     </div>
 
@@ -1166,9 +1300,6 @@
             }
         };
 
-        // ==============================================================
-        // TIPOS DE NÓ
-        // ==============================================================
         const NODE_TYPES = {
             scene:     { id: 'scene',     label: 'Cena',       icon: '🎬', color: '#3b82f6' },
             character: { id: 'character', label: 'Personagem', icon: '🧙', color: '#a855f7' },
@@ -1179,9 +1310,6 @@
             note:      { id: 'note',      label: 'Nota',       icon: '📝', color: '#64748b' }
         };
 
-        // ==============================================================
-        // CAMPOS ESPECÍFICOS POR TIPO
-        // ==============================================================
         const TYPE_FIELDS = {
             scene: [
                 { key: 'intExt',      label: 'INT / EXT',    type: 'select',   options: ['INT', 'EXT', 'INT/EXT'] },
@@ -1383,7 +1511,10 @@
                             beatId: null,
                             type: null,
                             pov: "",
-                            typeData: {}
+                            typeData: {},
+                            isVariant: false,
+                            variantOf: null,
+                            variantLabel: ""
                         }
                     ],
                     relationships: []
@@ -1437,6 +1568,10 @@
         let hoveredNodeId = null;
         let tooltipTimer = null;
         let previewHeld = false;
+
+        // Variantes
+        let showVariants = true;
+        let variantModalAnchorId = null;
 
         // ==========================================================
         // RELAÇÕES E EDIÇÃO INLINE
@@ -1730,6 +1865,9 @@
             if (node.tension > 0) {
                 const tColor = tensionColor(node.tension) || '#64748b';
                 badges.push(`<span class="tt-badge" style="background:${tColor}">🔥 ${node.tension}/10</span>`);
+            }
+            if (node.isVariant) {
+                badges.push(`<span class="tt-badge" style="background:#a855f7">🧪 Variante</span>`);
             }
             if (badges.length > 0) {
                 html += `<div class="tt-badges">${badges.join('')}</div>`;
@@ -2191,6 +2329,489 @@
                     break;
             }
             return parts.join(' · ');
+        }
+
+        // ==============================================================
+        // VARIANTES "E se..."
+        // ==============================================================
+        function openVariantModal() {
+            const id = document.getElementById('edit-node-id').value;
+            const node = mindMapData.nodes.find(n => n.id === id);
+            if (!node) return;
+            if (node.isVariant) {
+                showToast("Este nó já é uma variante. Escolha um nó canônico.", "warn");
+                return;
+            }
+            variantModalAnchorId = id;
+            const modal = document.getElementById('variant-modal');
+            const input = document.getElementById('variant-label-input');
+            input.value = '';
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            setTimeout(() => input.focus(), 50);
+        }
+
+        function closeVariantModal() {
+            const modal = document.getElementById('variant-modal');
+            if (!modal) return;
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            variantModalAnchorId = null;
+        }
+
+        function confirmCreateVariant() {
+            const input = document.getElementById('variant-label-input');
+            const label = (input.value || '').trim();
+            if (!label) {
+                showToast("Digite um rótulo para a variante.", "warn");
+                return;
+            }
+            const anchorId = variantModalAnchorId;
+            if (!anchorId) { closeVariantModal(); return; }
+            createVariant(anchorId, label);
+            closeVariantModal();
+        }
+
+        function createVariant(anchorId, label) {
+            const anchor = mindMapData.nodes.find(n => n.id === anchorId);
+            if (!anchor) return;
+            pushHistory();
+            const newId = generateNodeId();
+            const anchorH = getNodeHeight(anchor.id);
+            const preferredX = anchor.x + NODE_W + 100;
+            const preferredY = anchor.y + anchorH + 40;
+            const pos = findFreePosition(preferredX, preferredY);
+            const variantNode = {
+                id: newId,
+                title: `🧪 ${label}`,
+                content: `Hipótese alternativa a partir de "${anchor.title}".`,
+                parentId: null,
+                x: pos.x, y: pos.y,
+                color: "white", icons: [], collapsed: false, tension: 0, beatId: anchor.beatId,
+                type: null, pov: anchor.pov || "", typeData: {},
+                isVariant: true,
+                variantOf: anchorId,
+                variantLabel: label
+            };
+            mindMapData.nodes.push(variantNode);
+            selectedNodeIds.clear();
+            selectedNodeIds.add(newId);
+            saveStoriesStorage();
+            renderApp();
+            showToast(`Variante "${label}" criada.`, "success");
+            startInlineEdit(newId, 'title');
+        }
+
+        function promoteCurrentVariant() {
+            const id = document.getElementById('edit-node-id').value;
+            const variantNode = mindMapData.nodes.find(n => n.id === id);
+            if (!variantNode || !variantNode.isVariant || !variantNode.variantOf) return;
+            const anchor = mindMapData.nodes.find(n => n.id === variantNode.variantOf);
+            if (!anchor) return;
+
+            const defaultLabel = `Versão anterior`;
+            const anchorLabel = prompt(
+                `Promover "${variantNode.variantLabel || variantNode.title}" a canônico?\n\nComo rotular a versão anterior (a que será arquivada)?`,
+                defaultLabel
+            );
+            if (anchorLabel === null) return;
+
+            pushHistory();
+
+            const anchorPos = { x: anchor.x, y: anchor.y };
+            const variantPos = { x: variantNode.x, y: variantNode.y };
+
+            const variantSubtree = new Set([variantNode.id]);
+            let changed = true;
+            while (changed) {
+                changed = false;
+                mindMapData.nodes.forEach(n => {
+                    if (n.parentId && variantSubtree.has(n.parentId) && !variantSubtree.has(n.id)) {
+                        variantSubtree.add(n.id);
+                        changed = true;
+                    }
+                });
+            }
+
+            const dx = anchorPos.x - variantPos.x;
+            const dy = anchorPos.y - variantPos.y;
+            variantSubtree.forEach(nid => {
+                const n = mindMapData.nodes.find(x => x.id === nid);
+                if (n) { n.x += dx; n.y += dy; }
+            });
+
+            variantNode.isVariant = false;
+            variantNode.variantOf = null;
+            variantNode.variantLabel = '';
+            variantNode.parentId = anchor.parentId;
+            variantNode.title = variantNode.title.replace(/^🧪\s*/, '');
+            if (!variantNode.title.trim()) variantNode.title = anchor.title;
+
+            anchor.isVariant = true;
+            anchor.variantOf = variantNode.id;
+            anchor.variantLabel = anchorLabel.trim() || defaultLabel;
+            anchor.parentId = null;
+            anchor.x = variantPos.x;
+            anchor.y = variantPos.y;
+            anchor.title = `🧪 ${anchor.title.replace(/^🧪\s*/, '')}`;
+
+            if (mindMapData.beatSheetSavedPositions) {
+                delete mindMapData.beatSheetSavedPositions[variantNode.id];
+            }
+
+            saveStoriesStorage();
+            renderApp();
+            openInspectorFor(variantNode.id);
+            showToast(`Variante promovida a canônica. Versão anterior arquivada como "${anchorLabel}".`, "success", 4000);
+        }
+
+        function removeVariantFlag() {
+            const id = document.getElementById('edit-node-id').value;
+            const node = mindMapData.nodes.find(n => n.id === id);
+            if (!node || !node.isVariant) return;
+            if (!confirm(`Remover o status de variante de "${node.title}"? Ela se torna canônica, mas o nó original continua intacto.`)) return;
+            pushHistory();
+            node.isVariant = false;
+            node.variantOf = null;
+            node.variantLabel = '';
+            node.title = node.title.replace(/^🧪\s*/, '');
+            saveStoriesStorage();
+            renderApp();
+            openInspectorFor(node.id);
+            showToast("Nó agora é canônico.", "success", 2000);
+        }
+
+        function toggleShowVariants() {
+            showVariants = !showVariants;
+            document.body.classList.toggle('hide-variants', !showVariants);
+            const btn = document.getElementById('btn-toggle-variants');
+            if (btn) {
+                if (showVariants) {
+                    btn.className = 'bg-purple-600 hover:bg-purple-700 text-white px-2.5 py-1.5 rounded-lg text-xs font-medium transition flex items-center space-x-1.5 shadow-sm';
+                } else {
+                    btn.className = 'bg-slate-100 hover:bg-slate-200 text-slate-700 px-2.5 py-1.5 rounded-lg text-xs font-medium transition flex items-center space-x-1.5';
+                }
+            }
+
+            // Se estava com um nó variante (ou descendente) selecionado, desmarca
+            if (!showVariants) {
+                const selectedAreVariants = Array.from(selectedNodeIds).filter(id => {
+                    const n = mindMapData.nodes.find(x => x.id === id);
+                    if (!n) return false;
+                    let cur = n;
+                    const visited = new Set();
+                    while (cur) {
+                        if (visited.has(cur.id)) break;
+                        visited.add(cur.id);
+                        if (cur.isVariant) return true;
+                        cur = cur.parentId ? mindMapData.nodes.find(x => x.id === cur.parentId) : null;
+                    }
+                    return false;
+                });
+                if (selectedAreVariants.length > 0) {
+                    selectedNodeIds.clear();
+                    closeInspector();
+                    closeRelationshipEditor();
+                }
+            }
+
+            renderApp();
+            renderOutline();
+            renderMinimap();
+            showToast(showVariants ? "Variantes visíveis" : "Variantes ocultas", "info", 1500);
+        }
+
+        function drawVariantConnection(anchor, variant, svgContainer) {
+            const aEl = document.querySelector(`[data-node-id="${anchor.id}"]`);
+            const vEl = document.querySelector(`[data-node-id="${variant.id}"]`);
+            const aH = aEl ? aEl.offsetHeight : NODE_H_FALLBACK;
+            const vH = vEl ? vEl.offsetHeight : NODE_H_FALLBACK;
+            const ax = anchor.x + NODE_W / 2;
+            const ay = anchor.y + aH / 2;
+            const vx = variant.x + NODE_W / 2;
+            const vy = variant.y + vH / 2;
+
+            const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            path.setAttribute('d', `M ${ax} ${ay} L ${vx} ${vy}`);
+            path.setAttribute('class', 'variant-link');
+            svgContainer.appendChild(path);
+        }
+
+        // ==============================================================
+        // BÍBLIA DA HISTÓRIA
+        // ==============================================================
+        function openStoryBible() {
+            const modal = document.getElementById('bible-modal');
+            if (!modal) return;
+            populateBibleBeatFilter();
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            renderStoryBible();
+        }
+
+        function closeStoryBible() {
+            const modal = document.getElementById('bible-modal');
+            if (!modal) return;
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function populateBibleBeatFilter() {
+            const select = document.getElementById('bible-filter-beat');
+            if (!select) return;
+            const fw = getCurrentFramework();
+            select.innerHTML = '<option value="">Todos os beats</option>';
+            if (fw) {
+                fw.beats.forEach(b => {
+                    const opt = document.createElement('option');
+                    opt.value = b.id;
+                    opt.textContent = `${b.icon} ${b.name}`;
+                    select.appendChild(opt);
+                });
+            }
+        }
+
+        function getBibleKeyFor(n) {
+            if (!n.type || !n.typeData) return n.title;
+            const d = n.typeData;
+            switch (n.type) {
+                case 'character': return d.fullName || n.title;
+                case 'location':  return n.title;
+                case 'event':     return n.title;
+                case 'dialogue':  return (d.speaker && d.target) ? `${d.speaker} → ${d.target}` : (d.speaker || d.target || n.title);
+                case 'theme':     return d.statement || n.title;
+                case 'scene': {
+                    const p = [];
+                    if (d.intExt) p.push(d.intExt);
+                    if (d.location) p.push(d.location);
+                    if (d.timeOfDay) p.push(d.timeOfDay);
+                    return p.length > 0 ? p.join(' · ') : n.title;
+                }
+                default: return n.title;
+            }
+        }
+
+        function renderStoryBible() {
+            const container = document.getElementById('bible-content');
+            if (!container) return;
+            const searchQ = (document.getElementById('bible-search')?.value || '').toLowerCase().trim();
+            const filterType = document.getElementById('bible-filter-type')?.value || '';
+            const filterBeat = document.getElementById('bible-filter-beat')?.value || '';
+            const includeVariants = document.getElementById('bible-include-variants')?.checked || false;
+
+            const variantRootCache = new Map();
+            function getVarRoot(id) {
+                if (variantRootCache.has(id)) return variantRootCache.get(id);
+                const node = mindMapData.nodes.find(n => n.id === id);
+                if (!node) return null;
+                let result;
+                if (node.isVariant) result = node;
+                else if (!node.parentId) result = null;
+                else result = getVarRoot(node.parentId);
+                variantRootCache.set(id, result);
+                return result;
+            }
+
+            const buckets = {
+                character: [], location: [], event: [], dialogue: [], theme: [], scene: []
+            };
+            const beatCounts = new Map();
+            const povList = new Set();
+
+            mindMapData.nodes.forEach(n => {
+                const vr = getVarRoot(n.id);
+                const isVar = !!vr;
+                if (isVar && !includeVariants) return;
+                if (filterType && n.type !== filterType) return;
+                if (filterBeat && n.beatId !== filterBeat) return;
+
+                if (n.beatId) beatCounts.set(n.beatId, (beatCounts.get(n.beatId) || 0) + 1);
+                if (n.pov && n.pov.trim()) povList.add(n.pov.trim());
+
+                if (!n.type || !buckets[n.type]) return;
+
+                if (searchQ) {
+                    const hay = `${n.title} ${n.content} ${n.pov} ${JSON.stringify(n.typeData || {})}`.toLowerCase();
+                    if (!hay.includes(searchQ)) return;
+                }
+
+                buckets[n.type].push({ node: n, isVariant: isVar });
+            });
+
+            const readingOrder = getNodesInReadingOrder();
+            const orderIndex = new Map(readingOrder.map((n, i) => [n.id, i]));
+            buckets.scene.sort((a, b) => (orderIndex.get(a.node.id) ?? 9999) - (orderIndex.get(b.node.id) ?? 9999));
+
+            function groupByKey(list) {
+                const map = new Map();
+                list.forEach(item => {
+                    const key = getBibleKeyFor(item.node);
+                    if (!map.has(key)) map.set(key, []);
+                    map.get(key).push(item);
+                });
+                return map;
+            }
+
+            const sections = [
+                { type: 'character', title: 'Personagens', icon: '🧙', color: '#a855f7' },
+                { type: 'location',  title: 'Cenários',    icon: '📍', color: '#10b981' },
+                { type: 'event',     title: 'Eventos-chave', icon: '⚡', color: '#f59e0b' },
+                { type: 'theme',     title: 'Temas',       icon: '🎭', color: '#ec4899' },
+                { type: 'scene',     title: 'Cenas (cronologia)', icon: '🎬', color: '#3b82f6' },
+                { type: 'dialogue',  title: 'Diálogos',    icon: '💬', color: '#0ea5e9' }
+            ];
+
+            let html = '';
+
+            html += `<div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">`;
+            html += `<div class="bg-slate-50 border border-slate-200 rounded-lg p-3"><div class="text-2xl font-bold text-slate-800">${mindMapData.nodes.length}</div><div class="text-[10px] text-slate-500 uppercase font-semibold tracking-wider">Nós totais</div></div>`;
+            html += `<div class="bg-violet-50 border border-violet-200 rounded-lg p-3"><div class="text-2xl font-bold text-violet-800">${povList.size}</div><div class="text-[10px] text-violet-600 uppercase font-semibold tracking-wider">POVs únicos</div></div>`;
+            html += `<div class="bg-indigo-50 border border-indigo-200 rounded-lg p-3"><div class="text-2xl font-bold text-indigo-800">${beatCounts.size}</div><div class="text-[10px] text-indigo-600 uppercase font-semibold tracking-wider">Beats preenchidos</div></div>`;
+            html += `<div class="bg-purple-50 border border-purple-200 rounded-lg p-3"><div class="text-2xl font-bold text-purple-800">${mindMapData.nodes.filter(n => n.isVariant).length}</div><div class="text-[10px] text-purple-600 uppercase font-semibold tracking-wider">Variantes raiz</div></div>`;
+            html += `</div>`;
+
+            let hasContent = false;
+
+            sections.forEach(({ type, title, icon }) => {
+                const list = buckets[type];
+                if (list.length === 0) return;
+                hasContent = true;
+                const grouped = groupByKey(list);
+                const sortedKeys = Array.from(grouped.keys()).sort((a, b) => a.localeCompare(b, 'pt-BR'));
+
+                html += `<div class="bible-section">`;
+                html += `<div class="bible-section-title"><span style="font-size:14px">${icon}</span><span>${title}</span><span style="font-weight:400;color:#94a3b8">(${grouped.size})</span></div>`;
+
+                sortedKeys.forEach(key => {
+                    const items = grouped.get(key);
+                    const first = items[0];
+                    const hasVar = items.some(it => it.isVariant);
+                    const totalCount = items.length;
+                    const mainNode = first.node;
+                    const beatsHere = new Set(items.map(it => it.node.beatId).filter(Boolean));
+                    const povsHere = new Set(items.map(it => it.node.pov).filter(Boolean));
+
+                    const beatIcons = [];
+                    const fw = getCurrentFramework();
+                    if (fw) {
+                        fw.beats.forEach(b => { if (beatsHere.has(b.id)) beatIcons.push(b.icon); });
+                    }
+
+                    const meta = [];
+                    if (beatIcons.length > 0) meta.push(beatIcons.join(''));
+                    if (povsHere.size > 0) meta.push('👁 ' + Array.from(povsHere).slice(0, 2).join(', '));
+
+                    html += `<div class="bible-entry ${hasVar ? 'is-variant' : ''}" onclick="jumpToNodeFromBible('${mainNode.id}')">
+                        <span class="bible-key" title="${escapeHTML(key)}">${escapeHTML(key)}</span>
+                        <span class="bible-meta">${meta.join(' · ')}</span>
+                        <span class="bible-count">${totalCount}</span>
+                    </div>`;
+                });
+
+                html += `</div>`;
+            });
+
+            if (!hasContent) {
+                html += `<div class="text-center py-16 text-slate-400 italic text-sm">
+                    <i class="fa-solid fa-book-open text-4xl mb-3 opacity-30"></i>
+                    <p>Nenhum elemento narrativo encontrado com os filtros atuais.</p>
+                    <p class="text-[11px] mt-2">Atribua <b>tipos</b> aos nós (🧙 🎬 📍 ⚡ 💬 🎭) para que apareçam aqui.</p>
+                </div>`;
+            }
+
+            container.innerHTML = html;
+        }
+
+        function jumpToNodeFromBible(nodeId) {
+            const node = mindMapData.nodes.find(n => n.id === nodeId);
+            if (!node) return;
+            closeStoryBible();
+            selectedNodeIds.clear();
+            selectedNodeIds.add(nodeId);
+            setTimeout(() => {
+                focusNodeInView(node);
+                openInspectorFor(nodeId);
+            }, 80);
+        }
+
+        function exportStoryBible() {
+            const searchQ = (document.getElementById('bible-search')?.value || '').toLowerCase().trim();
+            const filterType = document.getElementById('bible-filter-type')?.value || '';
+            const filterBeat = document.getElementById('bible-filter-beat')?.value || '';
+            const includeVariants = document.getElementById('bible-include-variants')?.checked || false;
+
+            let md = `# Bíblia da História — ${currentStory.title}\n\n`;
+            md += `_Gerado em ${new Date().toLocaleString('pt-BR')}_\n\n`;
+
+            const variantRootCache = new Map();
+            function getVarRoot(id) {
+                if (variantRootCache.has(id)) return variantRootCache.get(id);
+                const node = mindMapData.nodes.find(n => n.id === id);
+                if (!node) return null;
+                let result;
+                if (node.isVariant) result = node;
+                else if (!node.parentId) result = null;
+                else result = getVarRoot(node.parentId);
+                variantRootCache.set(id, result);
+                return result;
+            }
+
+            const sections = [
+                { type: 'character', title: '🧙 Personagens' },
+                { type: 'location',  title: '📍 Cenários' },
+                { type: 'event',     title: '⚡ Eventos-chave' },
+                { type: 'theme',     title: '🎭 Temas' },
+                { type: 'scene',     title: '🎬 Cenas' },
+                { type: 'dialogue',  title: '💬 Diálogos' }
+            ];
+
+            sections.forEach(({ type, title }) => {
+                const items = mindMapData.nodes.filter(n => {
+                    if (n.type !== type) return false;
+                    const vr = getVarRoot(n.id);
+                    if (vr && !includeVariants) return false;
+                    if (filterType && n.type !== filterType) return false;
+                    if (filterBeat && n.beatId !== filterBeat) return false;
+                    if (searchQ) {
+                        const hay = `${n.title} ${n.content} ${n.pov} ${JSON.stringify(n.typeData || {})}`.toLowerCase();
+                        if (!hay.includes(searchQ)) return false;
+                    }
+                    return true;
+                });
+                if (items.length === 0) return;
+                md += `## ${title} (${items.length})\n\n`;
+                const grouped = new Map();
+                items.forEach(n => {
+                    const key = getBibleKeyFor(n);
+                    if (!grouped.has(key)) grouped.set(key, []);
+                    grouped.get(key).push(n);
+                });
+                Array.from(grouped.entries()).sort((a, b) => a[0].localeCompare(b[0], 'pt-BR')).forEach(([key, group]) => {
+                    md += `- **${key}** (${group.length} nó${group.length > 1 ? 's' : ''})`;
+                    const first = group[0];
+                    if (first.typeData) {
+                        const tf = TYPE_FIELDS[first.type] || [];
+                        const details = [];
+                        tf.forEach(f => {
+                            const v = first.typeData[f.key];
+                            if (v && String(v).trim()) details.push(`${f.label}: ${v}`);
+                        });
+                        if (details.length > 0) md += ` — ${details.slice(0, 3).join(' · ')}`;
+                    }
+                    md += '\n';
+                });
+                md += '\n';
+            });
+
+            const blob = new Blob([md], { type: 'text/markdown;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            const safeTitle = (currentStory.title || 'historia').toLowerCase().replace(/\s+/g, '_');
+            a.download = `${safeTitle}_biblia.md`;
+            a.click();
+            URL.revokeObjectURL(url);
+            showToast("Bíblia exportada como Markdown.", "success");
         }
 
         // ==========================================================
@@ -3045,8 +3666,20 @@
                     });
                 }
             }
+
+            // Cache de raiz de variante para filtrar
+            const vCache = new Map();
+            (function computeVR() {
+                function walk(node, vr) {
+                    vCache.set(node.id, node.isVariant ? node : vr);
+                    mindMapData.nodes.forEach(n => { if (n.parentId === node.id) walk(n, vCache.get(node.id)); });
+                }
+                mindMapData.nodes.filter(n => !n.parentId).forEach(r => walk(r, null));
+            })();
+
             mindMapData.nodes.forEach(n => {
                 if (!visible.has(n.id)) return;
+                if (!showVariants && vCache.get(n.id)) return;
                 const el = document.querySelector(`[data-node-id="${n.id}"]`);
                 const w = el ? el.offsetWidth : NODE_W;
                 const h = el ? el.offsetHeight : NODE_H_FALLBACK;
@@ -3185,7 +3818,10 @@
                 beatId: typeof n.beatId === 'string' ? n.beatId : null,
                 type: (typeof n.type === 'string' && NODE_TYPES[n.type]) ? n.type : null,
                 pov: typeof n.pov === 'string' ? n.pov : '',
-                typeData: (n.typeData && typeof n.typeData === 'object' && !Array.isArray(n.typeData)) ? n.typeData : {}
+                typeData: (n.typeData && typeof n.typeData === 'object' && !Array.isArray(n.typeData)) ? n.typeData : {},
+                isVariant: !!n.isVariant,
+                variantOf: (typeof n.variantOf === 'string' && n.variantOf) ? n.variantOf : null,
+                variantLabel: typeof n.variantLabel === 'string' ? n.variantLabel : ''
             };
         }
 
@@ -3235,7 +3871,7 @@
                 beatSortMode: false,
                 beatSortSavedPositions: null,
                 nodes: options.nodes || [
-                    { id: generateNodeId(), title: "NOVO MAPA", content: "", parentId: null, x: CANVAS_CENTER_X, y: CANVAS_CENTER_Y, color: "purple", icons: [], collapsed: false, tension: 0, beatId: null, type: null, pov: "", typeData: {} }
+                    { id: generateNodeId(), title: "NOVO MAPA", content: "", parentId: null, x: CANVAS_CENTER_X, y: CANVAS_CENTER_Y, color: "purple", icons: [], collapsed: false, tension: 0, beatId: null, type: null, pov: "", typeData: {}, isVariant: false, variantOf: null, variantLabel: "" }
                 ],
                 relationships: options.relationships || []
             };
@@ -3362,7 +3998,7 @@
                 if (titleName) {
                     const newKey = 'story_' + Date.now() + '-' + Math.random().toString(36).slice(2, 6);
                     const newSheet = makeSheet('Enredo Principal', {
-                        nodes: [{ id: generateNodeId(), title: titleName.toUpperCase(), content: "Início da história.", parentId: null, x: CANVAS_CENTER_X, y: CANVAS_CENTER_Y, color: "purple", icons: [], collapsed: false, tension: 0, beatId: null, type: null, pov: "", typeData: {} }]
+                        nodes: [{ id: generateNodeId(), title: titleName.toUpperCase(), content: "Início da história.", parentId: null, x: CANVAS_CENTER_X, y: CANVAS_CENTER_Y, color: "purple", icons: [], collapsed: false, tension: 0, beatId: null, type: null, pov: "", typeData: {}, isVariant: false, variantOf: null, variantLabel: "" }]
                     });
                     storiesDatabase[newKey] = { title: titleName, sheets: [newSheet], activeSheetId: newSheet.id };
                     currentStoryKey = newKey; currentStory = storiesDatabase[newKey]; mindMapData = newSheet;
@@ -3890,6 +4526,20 @@
             const nodeMap = new Map();
             mindMapData.nodes.forEach(n => nodeMap.set(n.id, n));
 
+            // Cache de raiz de variante por nó (O(n))
+            const variantRootCache = new Map();
+            (function computeVariantRoots() {
+                function walk(node, currentVariantRoot) {
+                    const vr = node.isVariant ? node : currentVariantRoot;
+                    variantRootCache.set(node.id, vr);
+                    mindMapData.nodes.forEach(n => {
+                        if (n.parentId === node.id) walk(n, vr);
+                    });
+                }
+                mindMapData.nodes.filter(n => !n.parentId).forEach(root => walk(root, null));
+            })();
+            function getVariantRoot(id) { return variantRootCache.get(id) || null; }
+
             const visible = getVisibleNodes();
             const focusSet = getFocusSet();
             const isBeatSheet = !!mindMapData.beatSheetMode;
@@ -3902,6 +4552,10 @@
                         const from = nodeMap.get(c.from);
                         const to = nodeMap.get(c.to);
                         if (!from || !to) return;
+                        // Se uma das pontas é variante e as variantes estão ocultas, esconde
+                        if (!showVariants) {
+                            if (variantRootCache.get(from.id) || variantRootCache.get(to.id)) return;
+                        }
                         const dim = focusSet && (!focusSet.has(from.id) || !focusSet.has(to.id));
                         drawNarrativeConnection(from, to, svgLayer, dim, c.kind);
                     });
@@ -3909,6 +4563,8 @@
                     const layout = mindMapData.layout || 'tree';
                     mindMapData.nodes.forEach(node => {
                         if (node.parentId && visible.has(node.id) && visible.has(node.parentId)) {
+                            // Oculta se filho é variante oculta
+                            if (!showVariants && variantRootCache.get(node.id)) return;
                             const parent = nodeMap.get(node.parentId);
                             if (parent) {
                                 const dim = focusSet && (!focusSet.has(node.id) || !focusSet.has(node.parentId));
@@ -3919,8 +4575,22 @@
                 }
             }
 
+            // Conexões de variante (só quando visíveis)
+            if (showVariants) {
+                mindMapData.nodes.forEach(n => {
+                    if (n.isVariant && n.variantOf) {
+                        const anchor = nodeMap.get(n.variantOf);
+                        if (anchor && visible.has(n.id) && visible.has(anchor.id)) {
+                            drawVariantConnection(anchor, n, svgLayer);
+                        }
+                    }
+                });
+            }
+
             (mindMapData.relationships || []).forEach(rel => {
                 if (visible.has(rel.from) && visible.has(rel.to)) {
+                    // Oculta relação que envolve variante oculta
+                    if (!showVariants && (variantRootCache.get(rel.from) || variantRootCache.get(rel.to))) return;
                     const dim = focusSet && (!focusSet.has(rel.from) || !focusSet.has(rel.to));
                     drawRelationship(rel, svgLayer, handlesLayer, dim);
                 }
@@ -3928,6 +4598,8 @@
 
             mindMapData.nodes.forEach(node => {
                 if (!visible.has(node.id)) return;
+                // Oculta completamente se for variante e o modo variantes estiver desligado
+                if (!showVariants && variantRootCache.get(node.id)) return;
                 const isSelected = selectedNodeIds.has(node.id);
                 const isEditing = editingNodeId === node.id;
                 const isDropTarget = dropTargetId === node.id;
@@ -3943,19 +4615,30 @@
                 const beat = node.beatId ? findBeatById(node.beatId) : null;
                 const nodeColors = NODE_COLORS[node.color] || NODE_COLORS.white;
                 const typeDef = node.type ? NODE_TYPES[node.type] : null;
+                const variantRoot = getVariantRoot(node.id);
+                const isInVariant = !!variantRoot;
+                const isVariantRootNode = node.isVariant;
+                const variantLabel = isVariantRootNode ? (node.variantLabel || '') : '';
 
                 const el = document.createElement('div');
-                el.className = `node-card absolute pointer-events-auto p-4 rounded-xl shadow-md border cursor-pointer flex flex-col ${isSelected ? 'ring-4 ring-indigo-400 is-selected shadow-xl' : ''} ${isDropTarget ? 'drop-target' : ''} ${isRelSource ? 'rel-source' : ''} ${isSearchMiss ? 'opacity-30' : ''} ${isFocusDim ? 'focus-dim' : ''}`;
+                el.className = `node-card absolute pointer-events-auto p-4 rounded-xl shadow-md border cursor-pointer flex flex-col ${isSelected ? 'ring-4 ring-indigo-400 is-selected shadow-xl' : ''} ${isDropTarget ? 'drop-target' : ''} ${isRelSource ? 'rel-source' : ''} ${isSearchMiss ? 'opacity-30' : ''} ${isFocusDim ? 'focus-dim' : ''} ${isInVariant ? 'is-variant' : ''}`;
                 el.style.left = `${node.x}px`;
                 el.style.top = `${node.y}px`;
                 el.style.width = NODE_W + 'px';
                 el.style.background = nodeColors.bg;
                 el.style.color = nodeColors.text;
                 if (!isSelected) {
-                    el.style.borderTopColor = nodeColors.border;
-                    el.style.borderRightColor = nodeColors.border;
-                    el.style.borderBottomColor = nodeColors.border;
-                    el.style.borderLeftColor = typeDef ? typeDef.color : nodeColors.border;
+                    if (isInVariant) {
+                        el.style.borderTopColor = '#a855f7';
+                        el.style.borderRightColor = '#a855f7';
+                        el.style.borderBottomColor = '#a855f7';
+                        el.style.borderLeftColor = '#a855f7';
+                    } else {
+                        el.style.borderTopColor = nodeColors.border;
+                        el.style.borderRightColor = nodeColors.border;
+                        el.style.borderBottomColor = nodeColors.border;
+                        el.style.borderLeftColor = typeDef ? typeDef.color : nodeColors.border;
+                    }
                 }
                 if (typeDef) el.style.borderLeftWidth = '4px';
                 el.setAttribute('data-node-id', node.id);
@@ -3976,6 +4659,13 @@
                 const tensionBarHTML = tColor
                     ? `<div class="absolute top-0 left-0 right-0 rounded-t-[11px] pointer-events-none" style="height: 3px; background: ${tColor};"></div>`
                     : '';
+
+                let variantBadgeHTML = '';
+                if (isVariantRootNode && variantLabel) {
+                    variantBadgeHTML = `<div class="variant-badge" title="Variante: ${escapeHTML(variantLabel)}"><i class="fa-solid fa-flask text-[8px]"></i><span>${escapeHTML(variantLabel)}</span></div>`;
+                } else if (isInVariant) {
+                    variantBadgeHTML = `<div class="variant-badge" title="Ramo de variante"><i class="fa-solid fa-flask text-[8px]"></i></div>`;
+                }
 
                 let beatBadgeHTML = '';
                 if (beat) {
@@ -4014,6 +4704,7 @@
 
                 el.innerHTML = `
                     ${tensionBarHTML}
+                    ${variantBadgeHTML}
                     ${beatBadgeHTML}
                     ${typeBadgeHTML}
                     <div class="mb-1.5 min-w-0">${titleHTML}</div>
@@ -4778,7 +5469,8 @@
                 id: newId, title: "Novo tópico", content: "",
                 parentId: parentId, x: pos.x, y: pos.y,
                 color: "white", icons: [], collapsed: false, tension: 0, beatId: null,
-                type: null, pov: "", typeData: {}
+                type: null, pov: "", typeData: {},
+                isVariant: false, variantOf: null, variantLabel: ""
             });
             parentNode.collapsed = false;
             selectedNodeIds.clear(); selectedNodeIds.add(newId);
@@ -4790,7 +5482,7 @@
             if (!parent) return null;
             const newId = generateNodeId();
             const pos = findFreePosition(parent.x + 320, parent.y);
-            mindMapData.nodes.push({ id: newId, title: "Novo tópico", content: "", parentId, x: pos.x, y: pos.y, color: "white", icons: [], collapsed: false, tension: 0, beatId: null, type: null, pov: "", typeData: {} });
+            mindMapData.nodes.push({ id: newId, title: "Novo tópico", content: "", parentId, x: pos.x, y: pos.y, color: "white", icons: [], collapsed: false, tension: 0, beatId: null, type: null, pov: "", typeData: {}, isVariant: false, variantOf: null, variantLabel: "" });
             parent.collapsed = false; saveStoriesStorage(); return newId;
         }
 
@@ -4800,7 +5492,7 @@
             if (!node.parentId) return createChild(nodeId);
             const newId = generateNodeId();
             const pos = findFreePosition(node.x, node.y + 130);
-            mindMapData.nodes.push({ id: newId, title: "Novo tópico", content: "", parentId: node.parentId, x: pos.x, y: pos.y, color: node.color, icons: [], collapsed: false, tension: 0, beatId: null, type: null, pov: "", typeData: {} });
+            mindMapData.nodes.push({ id: newId, title: "Novo tópico", content: "", parentId: node.parentId, x: pos.x, y: pos.y, color: node.color, icons: [], collapsed: false, tension: 0, beatId: null, type: null, pov: "", typeData: {}, isVariant: false, variantOf: null, variantLabel: "" });
             saveStoriesStorage(); return newId;
         }
 
@@ -4815,7 +5507,8 @@
                 id: newId, title: "Novo nó de enredo", content: "Escreva os detalhes...", parentId: parentTarget,
                 x: pos.x, y: pos.y,
                 color: "white", icons: [], collapsed: false, tension: 0, beatId: null,
-                type: null, pov: "", typeData: {}
+                type: null, pov: "", typeData: {},
+                isVariant: false, variantOf: null, variantLabel: ""
             });
             if (parentNode) parentNode.collapsed = false;
             selectedNodeIds.clear(); selectedNodeIds.add(newId);
@@ -4896,6 +5589,19 @@
             document.getElementById('multi-node-actions').classList.add('hidden');
             document.getElementById('single-node-actions').classList.remove('hidden');
             document.getElementById('inspector-sidebar').classList.remove('translate-x-full');
+
+            // Alterna entre criar variante (canônico) vs. promover variante
+            const createVarBtn = document.getElementById('btn-create-variant');
+            const varActions = document.getElementById('variant-actions');
+            if (node.isVariant) {
+                createVarBtn.classList.add('hidden');
+                varActions.classList.remove('hidden');
+                const lbl = document.getElementById('variant-actions-label');
+                if (lbl) lbl.textContent = node.variantLabel || '—';
+            } else {
+                createVarBtn.classList.remove('hidden');
+                varActions.classList.add('hidden');
+            }
             renderApp();
         }
 
@@ -5203,7 +5909,19 @@
             if (!container) return;
             container.innerHTML = '';
             const byParent = {};
-            mindMapData.nodes.forEach(n => { (byParent[n.parentId] ||= []).push(n); });
+            // Cache de variantes
+            const vCache = new Map();
+            (function computeVR() {
+                function walk(node, vr) {
+                    vCache.set(node.id, node.isVariant ? node : vr);
+                    mindMapData.nodes.forEach(n => { if (n.parentId === node.id) walk(n, vCache.get(node.id)); });
+                }
+                mindMapData.nodes.filter(n => !n.parentId).forEach(r => walk(r, null));
+            })();
+            mindMapData.nodes.forEach(n => {
+                if (!showVariants && vCache.get(n.id)) return;
+                (byParent[n.parentId] ||= []).push(n);
+            });
             const rootNodes = byParent[null] || [];
             const ul = document.createElement('ul');
             ul.className = 'space-y-0.5';
@@ -5222,6 +5940,7 @@
             const tColor = tensionColor(node.tension || 0);
             const beat = node.beatId ? findBeatById(node.beatId) : null;
             const typeDef = node.type ? NODE_TYPES[node.type] : null;
+            const variantIcon = node.isVariant ? '🧪' : '';
             const dotHTML = tColor
                 ? `<span class="w-1.5 h-1.5 rounded-full shrink-0" style="background:${tColor}"></span>`
                 : `<span class="w-1.5 h-1.5 shrink-0"></span>`;
@@ -5231,9 +5950,13 @@
             const typeHTML = typeDef
                 ? `<span class="text-[10px] shrink-0" title="${escapeHTML(typeDef.label)}">${typeDef.icon}</span>`
                 : '';
+            const variantHTML = variantIcon
+                ? `<span class="text-[10px] shrink-0" title="Variante">${variantIcon}</span>`
+                : '';
             row.innerHTML = `
                 <span class="w-4 text-slate-400 text-[10px] flex items-center justify-center">${hasChildren ? (collapsed ? '▶' : '▼') : ''}</span>
                 ${dotHTML}
+                ${variantHTML}
                 ${beatHTML}
                 ${typeHTML}
                 <span class="truncate flex-1 text-xs ${depth === 0 ? 'font-bold text-slate-800' : 'text-slate-700'}">${escapeHTML(node.title)}</span>
@@ -5304,8 +6027,20 @@
             if (visible.size === 0) { showToast("Nada para exportar.", "warn"); return; }
             const nodeInfo = {};
             let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+
+            // Cache de variantes
+            const vCache = new Map();
+            (function computeVR() {
+                function walk(node, vr) {
+                    vCache.set(node.id, node.isVariant ? node : vr);
+                    mindMapData.nodes.forEach(n => { if (n.parentId === node.id) walk(n, vCache.get(node.id)); });
+                }
+                mindMapData.nodes.filter(n => !n.parentId).forEach(r => walk(r, null));
+            })();
+
             mindMapData.nodes.forEach(n => {
                 if (!visible.has(n.id)) return;
+                if (!showVariants && vCache.get(n.id)) return;
                 const el = document.querySelector(`[data-node-id="${n.id}"]`);
                 const w = el ? el.offsetWidth : NODE_W;
                 const h = el ? el.offsetHeight : NODE_H_FALLBACK;
@@ -5315,6 +6050,7 @@
             });
             (mindMapData.relationships || []).forEach(rel => {
                 if (!visible.has(rel.from) || !visible.has(rel.to)) return;
+                if (!showVariants && (vCache.get(rel.from) || vCache.get(rel.to))) return;
                 const pts = [[rel.c1x, rel.c1y], [rel.c2x, rel.c2y]];
                 pts.forEach(([px, py]) => {
                     if (typeof px === 'number' && typeof py === 'number') {
@@ -5346,6 +6082,8 @@
                 if (isBeatSort) {
                     const conns = buildNarrativeConnections();
                     conns.forEach(c => {
+                        if (!nodeInfo[c.from] || !nodeInfo[c.to]) return;
+                        if (!showVariants && (vCache.get(c.from) || vCache.get(c.to))) return;
                         const pInfo = nodeInfo[c.from], cInfo = nodeInfo[c.to];
                         if (!pInfo || !cInfo) return;
                         const x1 = pInfo.x + pInfo.w/2 + offsetX, y1 = pInfo.y + pInfo.h/2 + offsetY;
@@ -5364,6 +6102,7 @@
                     mindMapData.nodes.forEach(node => {
                         if (!visible.has(node.id)) return;
                         if (!node.parentId || !visible.has(node.parentId)) return;
+                        if (!showVariants && vCache.get(node.id)) return;
                         const pInfo = nodeInfo[node.parentId];
                         const cInfo = nodeInfo[node.id];
                         if (!pInfo || !cInfo) return;
@@ -5389,6 +6128,7 @@
             }
             (mindMapData.relationships || []).forEach(rel => {
                 if (!visible.has(rel.from) || !visible.has(rel.to)) return;
+                if (!showVariants && (vCache.get(rel.from) || vCache.get(rel.to))) return;
                 const pInfo = nodeInfo[rel.from], cInfo = nodeInfo[rel.to];
                 if (!pInfo || !cInfo) return;
                 const pFromRect = { x: pInfo.x + offsetX, y: pInfo.y + offsetY, w: pInfo.w, h: pInfo.h };
@@ -5421,6 +6161,7 @@
             });
             mindMapData.nodes.forEach(node => {
                 if (!visible.has(node.id)) return;
+                if (!showVariants && vCache.get(node.id)) return;
                 const info = nodeInfo[node.id];
                 if (!info) return;
                 const colors = NODE_COLORS[node.color] || NODE_COLORS.white;
@@ -5428,7 +6169,8 @@
                 const w = info.w, h = info.h;
                 const tColor = tensionColor(node.tension || 0);
                 const typeDef = node.type ? NODE_TYPES[node.type] : null;
-                svg += `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="12" ry="12" fill="${colors.bg}" stroke="${colors.border}" stroke-width="1.5"/>\n`;
+                const isVar = node.isVariant;
+                svg += `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="12" ry="12" fill="${colors.bg}" stroke="${isVar ? '#a855f7' : colors.border}" stroke-width="1.5"${isVar ? ' stroke-dasharray="6 4"' : ''}/>\n`;
                 if (typeDef) {
                     svg += `<rect x="${x}" y="${y}" width="4" height="${h}" rx="2" ry="2" fill="${typeDef.color}"/>\n`;
                 }
@@ -5439,6 +6181,9 @@
                 if (beat) {
                     svg += `<text x="${x + 10}" y="${y + 16}" font-size="14" font-family="Inter, sans-serif">${beat.icon}</text>\n`;
                     svg += `<text x="${x + 30}" y="${y + 16}" fill="#4338ca" font-size="9" font-weight="700" font-family="Inter, sans-serif">${esc(beat.name)}</text>\n`;
+                }
+                if (isVar) {
+                    svg += `<text x="${x + w - 16}" y="${y + 16}" font-size="14" font-family="Inter, sans-serif">🧪</text>\n`;
                 }
                 const iconsArr = node.icons || [];
                 if (iconsArr.length > 0) {
@@ -5508,6 +6253,21 @@
             }
 
             const nodeMap = new Map(mindMapData.nodes.map(n => [n.id, n]));
+
+            // Cache de variantes (para filtrar)
+            const vCache = new Map();
+            (function computeVR() {
+                function walk(node, vr) {
+                    vCache.set(node.id, node.isVariant ? node : vr);
+                    mindMapData.nodes.forEach(n => { if (n.parentId === node.id) walk(n, vCache.get(node.id)); });
+                }
+                mindMapData.nodes.filter(n => !n.parentId).forEach(r => walk(r, null));
+            })();
+            if (!showVariants && mode === 'all') {
+                const filtered = new Set();
+                nodesToExport.forEach(id => { if (!vCache.get(id)) filtered.add(id); });
+                nodesToExport = filtered;
+            }
 
             let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
             nodesToExport.forEach(id => {
@@ -5759,7 +6519,19 @@
             const sheetName = mindMapData.name || 'Sem nome';
             const titlePrefix = currentStory ? `# ${currentStory.title}\n\n## ${sheetName}\n\n` : `# ${mindMapData.title || ''}\n\n`;
             const byParent = {};
-            mindMapData.nodes.forEach(n => { (byParent[n.parentId] ||= []).push(n); });
+            // Filtro de variantes
+            const vCache = new Map();
+            (function computeVR() {
+                function walk(node, vr) {
+                    vCache.set(node.id, node.isVariant ? node : vr);
+                    mindMapData.nodes.forEach(n => { if (n.parentId === node.id) walk(n, vCache.get(node.id)); });
+                }
+                mindMapData.nodes.filter(n => !n.parentId).forEach(r => walk(r, null));
+            })();
+            mindMapData.nodes.forEach(n => {
+                if (!showVariants && vCache.get(n.id)) return;
+                (byParent[n.parentId] ||= []).push(n);
+            });
             let md = titlePrefix;
             function walk(parentId, depth) {
                 (byParent[parentId] || []).forEach(n => {
@@ -5770,7 +6542,8 @@
                     const typeDef = n.type ? NODE_TYPES[n.type] : null;
                     const typeStr = typeDef ? `${typeDef.icon} ` : '';
                     const povStr = (n.pov && n.pov.trim()) ? ` _(POV: ${n.pov})_` : '';
-                    md += '  '.repeat(depth) + `- ${bStr}${typeStr}${iconList}**${n.title}**${tStr}${povStr}\n`;
+                    const varStr = n.isVariant ? ` _(🧪 variante: ${n.variantLabel || 'sem rótulo'})_` : '';
+                    md += '  '.repeat(depth) + `- ${bStr}${typeStr}${iconList}**${n.title}**${tStr}${povStr}${varStr}\n`;
                     if (n.content) md += '  '.repeat(depth + 1) + `  ${n.content}\n`;
                     if (n.type && n.typeData) {
                         const tf = TYPE_FIELDS[n.type] || [];
@@ -5958,21 +6731,15 @@
                     return;
                 }
 
-                if (e.key === 'Escape') {
-                    const pickerModal = document.getElementById('beat-picker-modal');
-                    if (pickerModal && !pickerModal.classList.contains('hidden')) {
-                        e.preventDefault(); closeBeatSheetPicker(); return;
+                // Ctrl+B — Bíblia da História
+                if ((e.ctrlKey || e.metaKey) && e.code === 'KeyB' && !e.shiftKey && !e.altKey) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    if (document.getElementById('bible-modal').classList.contains('hidden')) {
+                        openStoryBible();
+                    } else {
+                        closeStoryBible();
                     }
-                    if (hoveredNodeId) {
-                        e.preventDefault();
-                        hideNodeTooltip();
-                        return;
-                    }
-                    if (focusModeNodeId) { exitFocusMode(); return; }
-                    if (relationshipSourceId) { relationshipSourceId = null; renderApp(); return; }
-                    if (selectedRelationshipId) { closeRelationshipEditor(); renderApp(); return; }
-                    selectedNodeIds.clear(); closeInspector(); renderApp();
-                    closeExportMenu();
                     return;
                 }
 
@@ -5989,6 +6756,32 @@
                     e.preventDefault();
                     e.stopPropagation();
                     openImportDialog();
+                    return;
+                }
+
+                if (e.key === 'Escape') {
+                    const pickerModal = document.getElementById('beat-picker-modal');
+                    if (pickerModal && !pickerModal.classList.contains('hidden')) {
+                        e.preventDefault(); closeBeatSheetPicker(); return;
+                    }
+                    const bibleModal = document.getElementById('bible-modal');
+                    if (bibleModal && !bibleModal.classList.contains('hidden')) {
+                        e.preventDefault(); closeStoryBible(); return;
+                    }
+                    const variantModal = document.getElementById('variant-modal');
+                    if (variantModal && !variantModal.classList.contains('hidden')) {
+                        e.preventDefault(); closeVariantModal(); return;
+                    }
+                    if (hoveredNodeId) {
+                        e.preventDefault();
+                        hideNodeTooltip();
+                        return;
+                    }
+                    if (focusModeNodeId) { exitFocusMode(); return; }
+                    if (relationshipSourceId) { relationshipSourceId = null; renderApp(); return; }
+                    if (selectedRelationshipId) { closeRelationshipEditor(); renderApp(); return; }
+                    selectedNodeIds.clear(); closeInspector(); renderApp();
+                    closeExportMenu();
                     return;
                 }
 
@@ -6029,6 +6822,20 @@
                     return;
                 }
                 if (e.code === 'KeyT' && !e.ctrlKey && !e.metaKey && e.shiftKey) { e.preventDefault(); addSheet(); return; }
+
+                // E — Criar variante "E se..." (só quando 1 nó canônico selecionado)
+                if (e.code === 'KeyE' && !e.ctrlKey && !e.metaKey && !e.altKey && !e.shiftKey) {
+                    if (selectedNodeIds.size === 1) {
+                        const id = Array.from(selectedNodeIds)[0];
+                        const node = mindMapData.nodes.find(n => n.id === id);
+                        if (node && !node.isVariant) {
+                            e.preventDefault();
+                            openVariantModal();
+                            return;
+                        }
+                    }
+                    return;
+                }
 
                 const selected = Array.from(selectedNodeIds)[0];
                 const node = selected ? mindMapData.nodes.find(n => n.id === selected) : null;
